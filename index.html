@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HY Studio</title>
+<meta name="description" content="HY Studio — モバイルアプリを制作しています。現在サイトを準備中です。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="HY Studio">
+<meta property="og:description" content="モバイルアプリを制作しています。現在サイトを準備中です。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hystudio21.com/">
+<style>
+  :root{
+    --bg:#0B1512; --ink:#EAF1EE; --ink-2:#9EB1AB; --ink-3:#6E817B;
+    --teal:#5FD3C4; --line:rgba(255,255,255,.12);
+    --mono:ui-monospace,"SF Mono",Menlo,"Roboto Mono",Consolas,monospace;
+  }
+  @media (prefers-color-scheme:light){
+    :root{ --bg:#FBFCFC; --ink:#15211E; --ink-2:#4C5C57; --ink-3:#7E8E88;
+           --teal:#0C7F73; --line:rgba(22,44,40,.14); }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--ink); display:flex; align-items:center; justify-content:center;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",system-ui,sans-serif;
+    line-height:1.8; -webkit-font-smoothing:antialiased; padding:32px 22px; position:relative; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(60% 55% at 80% 8%, rgba(224,166,44,.10), transparent 62%),
+               radial-gradient(70% 60% at 10% 95%, rgba(95,211,196,.10), transparent 62%);
+  }
+  main{position:relative; z-index:1; width:100%; max-width:560px}
+  .mark{
+    font-size:clamp(30px,7vw,44px); font-weight:900; letter-spacing:.02em; line-height:1.2;
+  }
+  .mark span{color:var(--teal)}
+  .rule{width:44px; height:3px; background:var(--teal); border-radius:2px; margin:22px 0 20px}
+  .lead{color:var(--ink-2); font-size:15.5px}
+  .status{
+    display:inline-block; margin-top:26px; font-family:var(--mono); font-size:12px; font-weight:700;
+    letter-spacing:.16em; color:var(--teal); border:1px solid var(--line);
+    padding:8px 16px; border-radius:999px;
+  }
+  .links{margin-top:34px; padding-top:20px; border-top:1px solid var(--line);
+    font-size:14px; display:flex; flex-direction:column; gap:9px}
+  .links a{color:var(--ink-2); text-decoration:none; border-bottom:1px solid transparent; align-self:flex-start}
+  .links a:hover{color:var(--teal); border-bottom-color:var(--teal)}
+  .links .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; color:var(--ink-3)}
+  footer{margin-top:30px; font-size:12px; color:var(--ink-3)}
+</style>
+</head>
+<body>
+  <main>
+    <div class="mark">HY <span>Studio</span></div>
+    <div class="rule"></div>
+    <p class="lead">モバイルアプリをつくっています。<br>ウェブサイトは現在準備中です。</p>
+    <span class="status">COMING SOON</span>
+
+    <div class="links">
+      <span class="lbl">CONTACT</span>
+      <a href="mailto:info@hystudio21.com">info@hystudio21.com</a>
+      <span class="lbl" style="margin-top:10px">DOCUMENTS</span>
+      <a href="/noricho/privacy.html">ノリ帳 プライバシーポリシー</a>
+    </div>
+
+    <footer>&copy; HY Studio</footer>
+  </main>
+</body>
+</html>

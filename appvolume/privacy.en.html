@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LunaMixer: Per-App Volume — Privacy Policy</title>
+<style>
+  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.7;color:#1a1a1a;background:#fff}
+  h1{font-size:24px;margin:0 0 4px}
+  .updated{color:#666;font-size:13px;margin:0 0 28px}
+  h2{font-size:18px;margin:32px 0 8px;border-bottom:2px solid #22365f;padding-bottom:4px}
+  a{color:#22365f}
+  ul{padding-left:20px}
+  code{background:#f1f4fa;padding:1px 5px;border-radius:4px}
+  .lang{font-size:13px;margin:0 0 20px}
+  @media (prefers-color-scheme:dark){
+    body{color:#eef4ff;background:#101725}
+    h2{border-bottom-color:#8fb0de}
+    a{color:#8fb0de}
+    code{background:#1c2740}
+    .updated{color:#aebad0}
+  }
+</style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="updated">App: LunaMixer: Per-App Volume (Japanese: 個別音量) / Publisher: HY Studio / Last updated: 11 August 2026</p>
+  <p class="lang"><a href="privacy.html">日本語</a></p>
+
+  <p>This policy sets out how the mobile app "LunaMixer" (the "app") handles user information.</p>
+
+  <h2>1. Information collected and stored</h2>
+  <p><strong>The app collects no user information at all.</strong> Nothing reaches the developer, and nothing is sent to any external server. There is no account, no sign-in, and no email address to enter.</p>
+  <p>The only things the app stores are these settings. <strong>All of them stay on the device</strong> and never leave it.</p>
+  <ul>
+    <li>The theme you picked (colour and light/dark)</li>
+    <li>The volume you set for each app</li>
+    <li>A record of whether first-run setup has been completed</li>
+  </ul>
+
+  <h2>2. Network use</h2>
+  <p>The app shows no adverts and contains no analytics or crash-reporting.</p>
+  <p>The app does hold Android's <strong>internet permission (<code>INTERNET</code>)</strong>. It is needed to reach Android's own wireless debugging endpoint. <strong>That endpoint is on the same device the app is running on. The app never connects to any external server, including any server of the developer's.</strong></p>
+  <p>Wi-Fi is required during first-run setup because Android only makes wireless debugging available while a Wi-Fi connection is active. That Wi-Fi does not have to reach the internet.</p>
+
+  <h2>3. Use of the Accessibility API</h2>
+  <p>The app uses Android's Accessibility service. <strong>It is used for exactly one purpose: reading the six-digit pairing code shown on screen during first-run setup.</strong></p>
+  <p>It is needed because the pairing code stops working the moment you leave the screen that shows it. There is no way for you to write the digits down and type them into the app, so reading them off the screen is the only route.</p>
+  <p>What it can see and do is limited as follows.</p>
+  <ul>
+    <li><strong>It is restricted to the screens of Android's Settings app</strong> (<code>android:packageNames="com.android.settings"</code>). It cannot read the screens of any other app.</li>
+    <li>It never operates your screen — no taps, no text entry, no scrolling. It only reads.</li>
+    <li>It runs only while first-run setup is waiting for a pairing code.</li>
+    <li><strong>The moment pairing succeeds, the app switches this service off itself.</strong> You do not have to turn it off by hand.</li>
+    <li>The six digits it reads are used to connect and are neither stored nor transmitted.</li>
+  </ul>
+  <p>The prompt "Allow LunaMixer to have full control of your device?" is the wording Android shows for every app that uses Accessibility. It is not a description of what this app does.</p>
+
+  <h2>4. Other permissions</h2>
+  <ul>
+    <li><strong>Display over other apps (<code>SYSTEM_ALERT_WINDOW</code>)</strong> — to show the volume bubble and panel while you are using other apps.</li>
+    <li><strong>Query installed apps (<code>QUERY_ALL_PACKAGES</code>)</strong> — to show the name and icon of each app that is playing audio. This is used for display only and is neither stored nor transmitted.</li>
+    <li><strong>Notifications (<code>POST_NOTIFICATIONS</code>)</strong> — to report setup progress and to show that volume control is running.</li>
+    <li><strong>Foreground service (<code>FOREGROUND_SERVICE</code> and related)</strong> — to keep the bubble on screen while other apps are in use.</li>
+    <li><strong>Network state (<code>ACCESS_NETWORK_STATE</code>)</strong> — to detect whether you are on Wi-Fi, so setup can say so.</li>
+  </ul>
+
+  <h2>5. Deleting your data</h2>
+  <p>Everything the app stores is on your device. <strong>Uninstalling the app deletes all of it.</strong> There is no need to ask the developer to delete anything, because the developer holds nothing.</p>
+  <p>The pairing registered on your device during setup can be removed by you at any time under Settings → Developer options → Wireless debugging.</p>
+
+  <h2>6. Children's privacy</h2>
+  <p>This app is not directed at children under 13.</p>
+
+  <h2>7. Disclaimer</h2>
+  <p>The app is a tool that sets per-app volume using Android's own developer features.</p>
+  <ul>
+    <li>Using the app requires Android's "Developer options" and "Wireless debugging" to be switched on. <strong>Please decide for yourself whether leaving those on is appropriate for your device.</strong> In particular, if you leave "USB debugging" on, take care not to connect to computers or USB devices you do not trust.</li>
+    <li>Some apps produce sound in a way that cannot be adjusted this way. <strong>Operation with every app is not guaranteed.</strong></li>
+    <li>Setup steps and behaviour may differ depending on the device model, Android version, and manufacturer changes.</li>
+    <li>The developer accepts no liability for any damage arising from use of the app, except in cases of wilful misconduct or gross negligence.</li>
+  </ul>
+
+  <h2>8. Changes to this policy</h2>
+  <p>This policy may be revised as needed. Any significant change will be announced on this page.</p>
+
+  <h2>9. Contact</h2>
+  <p>For questions about the app or this policy, please get in touch.</p>
+  <p>Publisher: HY Studio<br>
+  Contact: <a href="mailto:info@hystudio21.com">info@hystudio21.com</a></p>
+</body>
+</html>
