@@ -1,0 +1,148 @@
+/*
+  Shelfy の紹介ページ。docs/ の中身がそのまま hy-site の shelfy/ になる。
+  index.html（日）と index.en.html（英）が読み込む。
+
+  見た目はサイト共通ではなく Shelfy 自身のもの。根拠はランチャーアイコンで、白地に
+  4色のタイル（青・桃・黄・緑）を45°傾けた菱形。ページもその4色だけを構造の色として
+  使い、地は白のまま置く。**色を持っているのは画面写真のほうで、ページは黙っている。**
+
+  見出しの文はストアの掲載文（store/listing_ja.txt）から採っている。同じ言い回しを
+  使うことで、ストアから来た人が同じアプリの話だと分かる。
+*/
+
+:root{
+  --ground:#FFFFFF;
+  --panel:#F4F6F7;
+  --ink:#1B222A;
+  --muted:#6B7580;
+  --rule:#E4E8EA;
+
+  /* アイコンのタイル4色。順は青→桃→黄→緑で、アイコンの並びと同じ */
+  --t1:#6BA0EA;
+  --t2:#F088B8;
+  --t3:#FFC61A;
+  --t4:#5FC98E;
+
+  --link:#1A7B75;
+
+  --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",
+         "Noto Sans JP",Meiryo,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#12181F; --panel:#1B2126; --ink:#F1F4F7; --muted:#AEB8BF; --rule:#2C343B;
+    --link:#3FB6AA;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12181F; --panel:#1B2126; --ink:#F1F4F7; --muted:#AEB8BF; --rule:#2C343B;
+  --link:#3FB6AA;
+}
+:root[data-theme="light"]{
+  --ground:#FFFFFF; --panel:#F4F6F7; --ink:#1B222A; --muted:#6B7580; --rule:#E4E8EA;
+  --link:#1A7B75;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+
+body{
+  background:var(--ground);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+.wrap{width:min(68rem,calc(100% - 2.5rem));margin-inline:auto}
+
+/* ---- 上部。菱形のマークはアイコンそのもの ---- */
+
+.top{display:flex;align-items:center;gap:.8rem;padding:1.3rem 0}
+.mark{width:2.1rem;height:2.1rem;flex:0 0 auto}
+.name{font-weight:800;letter-spacing:-.01em;font-size:1.05rem}
+.top .sp{margin-left:auto}
+.lang{font-family:var(--mono);font-size:.78rem;color:var(--link);text-decoration:none;
+      border-bottom:1px solid transparent}
+.lang:hover,.lang:focus-visible{border-bottom-color:var(--link)}
+
+/* ---- 見出し ---- */
+
+.hero{padding:1rem 0 1.6rem;max-width:44rem}
+h1{font-size:clamp(1.9rem,5.2vw,3rem);line-height:1.22;font-weight:900;
+   letter-spacing:-.035em;word-break:keep-all;text-wrap:balance}
+.sub{margin-top:.7rem;font-size:clamp(1.05rem,2.4vw,1.35rem);font-weight:700;color:var(--ink)}
+.lede{margin-top:1rem;font-size:clamp(.98rem,1.9vw,1.05rem);color:var(--muted)}
+.lede b{color:var(--ink);font-weight:700}
+
+/* ストアへの導線。公開までは押せない見た目にしておく */
+.cta{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1.4rem}
+.store{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:var(--ink);color:var(--ground);text-decoration:none;
+  padding:.68rem 1.15rem;border-radius:9px;font-weight:700;font-size:.95rem;
+}
+.store svg{width:1.05rem;height:1.05rem;flex:0 0 auto}
+.store:hover,.store:focus-visible{opacity:.88}
+.store[aria-disabled="true"]{background:var(--panel);color:var(--muted);cursor:default;
+  border:1px solid var(--rule)}
+.ctanote{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
+
+/* ---- 画像。ページの主役 ---- */
+
+.band{display:grid;gap:.8rem;grid-template-columns:repeat(2,1fr)}
+@media (min-width:44rem){ .band{grid-template-columns:repeat(4,1fr);gap:1.1rem} }
+.band.three{grid-template-columns:repeat(2,1fr)}
+@media (min-width:44rem){ .band.three{grid-template-columns:repeat(3,1fr)} }
+.band img{width:100%;height:auto;border-radius:12px;background:var(--panel);
+          border:1px solid var(--rule)}
+
+.solo{margin:1.4rem 0 0;max-width:17rem}
+.solo img{width:100%;height:auto;border-radius:12px;border:1px solid var(--rule);background:var(--panel)}
+
+/* ---- 節。見出しの上の短い線がアイコンのタイルの色 ---- */
+
+section{padding:2.4rem 0}
+section + section{border-top:1px solid var(--rule)}
+.bar{width:2.2rem;height:.28rem;border-radius:2px;margin-bottom:.8rem}
+.b1{background:var(--t1)} .b2{background:var(--t2)} .b3{background:var(--t3)} .b4{background:var(--t4)}
+h2{font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;letter-spacing:-.025em;
+   line-height:1.32;text-wrap:balance;max-width:24em}
+.say{margin-top:.7rem;color:var(--muted);max-width:36em}
+.say + .say{margin-top:.5rem}
+.say b{color:var(--ink);font-weight:700}
+
+/* ---- 一覧 ---- */
+
+.two{display:grid;gap:1.4rem;grid-template-columns:1fr;margin-top:1.2rem}
+@media (min-width:44rem){ .two{grid-template-columns:1fr 1fr;gap:2.4rem} }
+.list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.list li{padding-left:1.3rem;position:relative;font-size:.96rem;line-height:1.7}
+.list li::before{content:"";position:absolute;left:0;top:.6em;width:.5rem;height:.5rem;border-radius:2px}
+.free li::before{background:var(--t4)}
+.paid li::before{background:var(--t2)}
+.list small{display:block;color:var(--muted);font-size:.85rem;line-height:1.65;margin-top:.1rem}
+
+/* ---- 権限 ---- */
+
+.perm{margin-top:1rem;display:flex;flex-direction:column;gap:.9rem}
+.perm > div{display:grid;gap:.1rem;max-width:40em}
+.perm h3{font-size:.95rem;font-weight:700}
+.perm code{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.perm p{color:var(--muted);font-size:.92rem;line-height:1.7}
+
+/* ---- 仕様と下部 ---- */
+
+.spec{margin-top:1rem;font-size:.94rem;max-width:34rem}
+.spec div{display:flex;gap:1.2rem;padding:.45rem 0;border-bottom:1px solid var(--rule)}
+.spec dt{flex:0 0 8rem;color:var(--muted);font-size:.87rem}
+.spec dd{flex:1}
+
+footer{padding:1.8rem 0 3rem;border-top:1px solid var(--rule);display:flex;
+       flex-wrap:wrap;gap:.6rem 1.5rem;align-items:center;font-size:.87rem;color:var(--muted)}
+footer a{color:var(--link);text-decoration:none;border-bottom:1px solid transparent}
+footer a:hover,footer a:focus-visible{border-bottom-color:var(--link)}
+footer .sp{margin-left:auto;font-family:var(--mono);font-size:.76rem;letter-spacing:.14em}
+
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px}

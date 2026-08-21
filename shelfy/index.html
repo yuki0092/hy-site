@@ -1,0 +1,219 @@
+<!doctype html>
+<!--
+  Shelfy の紹介ページ（日本語）。公開先は https://hystudio21.com/shelfy/
+  実体は公開リポジトリ yuki0092/hy-site の shelfy/ で、この docs/ の中身がそのまま入る。
+
+  英語版は index.en.html、プライバシーポリシーは privacy.html。共通のスタイルは _site.css。
+
+  見出しと本文はストアの掲載文（store/listing_ja.txt）から採っている。ストアから来た人が
+  同じ言い回しに出会うようにするため。**ページの主役は画面写真で、文章は写真の間を繋ぐ。**
+  マークはランチャーアイコンと同じ、白地に4色のタイルを45°傾けたもの。
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shelfy — アプリを自動で仕分ける | HY Studio</title>
+<meta name="description" content="ホーム画面の整理、卒業しよう。アプリ探しは Shelfy におまかせ。開いた時にはもう仕分けが終わっています。アプリを自動でカテゴリに分け、タブで切り替えて表示します。">
+<meta property="og:title" content="ホーム画面の整理、卒業しよう。— Shelfy">
+<meta property="og:description" content="アプリ探しは Shelfy におまかせ。開いた時にはもう仕分けが終わっています。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hystudio21.com/shelfy/">
+<link rel="stylesheet" href="_site.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <!--
+      viewBox は 108 の画布ではなく、中央 72 の可視部分。アダプティブアイコンは 108 に
+      描いて端末が中央 72 だけを見せる作りで、画布ごと出すとマークが実機の3分の2の
+      大きさになる（差し渡し 41 が 38% ではなく 57% を占めるのが正しい）。
+    -->
+    <svg class="mark" viewBox="18 18 72 72" role="img" aria-label="Shelfy のアイコン">
+      <g transform="rotate(-45 54 54)">
+        <rect x="33.5" y="33.5" width="19" height="19" rx="4" fill="#6BA0EA"/>
+        <rect x="55.5" y="33.5" width="19" height="19" rx="4" fill="#F088B8"/>
+        <rect x="33.5" y="55.5" width="19" height="19" rx="4" fill="#FFC61A"/>
+        <rect x="55.5" y="55.5" width="19" height="19" rx="4" fill="#5FC98E"/>
+      </g>
+    </svg>
+    <span class="name">Shelfy</span>
+    <span class="sp"></span>
+    <a class="lang" href="index.en.html" hreflang="en">English</a>
+  </div>
+
+  <header class="hero">
+    <h1>ホーム画面の整理、卒業しよう。</h1>
+    <p class="sub">アプリ探しは Shelfy におまかせ</p>
+    <p class="lede">
+      <b>開いた時にはもう仕分けが終わっています。</b>設定は不要です。
+      アプリを自動でカテゴリに分け、タブで切り替えて表示します。
+    </p>
+
+    <!--
+      公開までは押せない見た目にしてある。ストアに出したら、この span を次の a に
+      差し替えるだけで有効になる。パッケージ名は dev.yuki.appsort。
+
+      <a class="store" href="https://play.google.com/store/apps/details?id=dev.yuki.appsort">…</a>
+
+      あわせて .ctanote の「公開準備中」も消すこと。
+    -->
+    <div class="cta">
+      <span class="store" aria-disabled="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+          <path d="M3.6 1.8a1 1 0 0 0-.6.9v18.6a1 1 0 0 0 .6.9l10-10.2-10-10.2Zm11.1 9.3 2.6-2.7-9.9-5.6 7.3 8.3Zm0 1.8-7.3 8.3 9.9-5.6-2.6-2.7Zm4-2.2-2.6 2.6 2.6 2.6 2.6-1.5a1.3 1.3 0 0 0 0-2.2l-2.6-1.5Z"/>
+        </svg>
+        Google Play
+      </span>
+      <span class="ctanote">公開準備中</span>
+    </div>
+  </header>
+
+  <div class="band">
+    <img src="shots/1.jpg" alt="ピンクのテーマで決済カテゴリを開いた画面" width="520" height="1027">
+    <img src="shots/6.jpg" alt="ホワイトのテーマでよく使うタブを開いた画面" loading="lazy" width="520" height="1027">
+    <img src="shots/2.jpg" alt="マグネターのテーマでゲームカテゴリを開いた画面" loading="lazy" width="520" height="1027">
+    <img src="shots/7.jpg" alt="ドットのテーマでよく使うタブを開いた画面" loading="lazy" width="520" height="1027">
+  </div>
+
+  <section>
+    <div class="bar b1"></div>
+    <h2>整理するのは Shelfy の中だけ。<br>ホーム画面には触れません</h2>
+    <p class="say">
+      Shelfy はランチャーではありません。ホーム画面の配置、壁紙、ウィジェットは一切そのままです。
+      今の使い方を何ひとつ変えずに、アプリの探し方だけを増やせます。
+    </p>
+    <p class="say">
+      いつものホーム画面はそこにあり、探すときだけ Shelfy を開く。それだけです。
+    </p>
+  </section>
+
+  <section>
+    <div class="bar b4"></div>
+    <h2>無料でできること</h2>
+    <p class="say">
+      <b>自動の仕分けと検索は、購入しなくてもずっと無料で使えます。</b>
+    </p>
+
+    <div class="two">
+      <div>
+        <ul class="list free">
+          <li>自動で仕分け
+            <small>SNS / 決済 / 買い物 / グルメ / 写真・動画 / 音楽 / ゲーム / 金融 / ツール / 旅行・交通 / ニュース / 仕事 / 健康 / カレンダー / 天気 / 学習 / 生活 の17カテゴリに自動で振り分けます。</small>
+          </li>
+          <li>「よく使う」タブ
+            <small>直近2週間で実際に開いた回数をもとに並べます。最後に触った順ではなく、本当によく使うものが上に来ます。</small>
+          </li>
+          <li>検索
+            <small>カテゴリをまたいで、名前の一部から探せます。</small>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list free">
+          <li>1行に1列/2列の表示切替え / カテゴリごとの件数表示</li>
+          <li>ホワイトのテーマ</li>
+          <li>広告なし</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="band" style="margin-top:1.6rem">
+      <img src="shots/4.jpg" alt="名前の一部で検索した結果の画面" loading="lazy" width="520" height="1027">
+      <img src="shots/6.jpg" alt="「よく使う」タブを開いた画面" loading="lazy" width="520" height="1027">
+    </div>
+  </section>
+
+  <section>
+    <div class="bar b2"></div>
+    <h2>Shelfy プレミアム</h2>
+    <p class="say">見た目を変えたい、仕分けを自分の手で直したい、という方に。</p>
+
+    <div class="two">
+      <div>
+        <ul class="list paid">
+          <li>7つのテーマ
+            <small>ブラック / ピンク / パープル / グリーン / ブルー / ドット / マグネター。色が変わるだけではありません。ドットとマグネターは枠・影・書体まで別物です。</small>
+          </li>
+          <li>カテゴリを自分で作る
+            <small>好きな名前のカテゴリを5つまで追加できます。並び替え・名前の変更・削除も、作ったあとから自由にできます。</small>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list paid">
+          <li>アプリを手動で移す
+            <small>仕分けが気に入らないときは、別のカテゴリへ移せます。複数をまとめて移すことも、あとから元に戻すこともできます。</small>
+          </li>
+          <li>開くたび「よく使う」から始める</li>
+          <li>アンインストールを許可
+            <small>Android 標準の削除確認画面を Shelfy から開けるようになります。</small>
+          </li>
+          <li>機種変更しても、そのまま（Android 12 以降）
+            <small>作ったカテゴリも、手で移したアプリも、新しい端末へそのまま引き継がれます。ファイルに書き出して控えを持っておくこともできます。Android 11 以前の端末へ移すときは、この書き出しをお使いください。</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="say">
+      月額または年額のサブスクリプションです。いつでも解約できます。
+      購入しなくても、上の「無料でできること」はずっと使えます。
+    </p>
+
+    <div class="band" style="margin-top:1.6rem">
+      <img src="shots/5.jpg" alt="設定画面。テーマとカテゴリの項目が並んでいる" loading="lazy" width="520" height="1027">
+      <img src="shots/3.jpg" alt="アプリを別のカテゴリへ移すシートを開いた画面" loading="lazy" width="520" height="1027">
+    </div>
+  </section>
+
+  <section>
+    <div class="bar b3"></div>
+    <h2>広告は表示しません</h2>
+    <p class="say">
+      一覧に紛れ込む広告も、起動時に出る広告もありません。プレミアムでも無料でも、広告は表示しません。
+    </p>
+
+    <h2 style="margin-top:2.6rem">権限について</h2>
+    <div class="perm">
+      <div>
+        <h3>使用状況へのアクセス</h3>
+        <code>PACKAGE_USAGE_STATS</code>
+        <p>「よく使う」タブの並び順を決めるためだけに使います。<b>許可しなくても、他のすべての機能は通常どおり使えます。</b></p>
+      </div>
+      <div>
+        <h3>アプリ削除の要求</h3>
+        <code>REQUEST_DELETE_PACKAGES</code>
+        <p>設定でオンにしたときだけ、Android 標準の削除確認画面を開きます。Shelfy がアプリを消すことはありません。</p>
+      </div>
+      <div>
+        <h3>インターネット / ネットワーク状態の確認 / 課金</h3>
+        <code>INTERNET · ACCESS_NETWORK_STATE · BILLING</code>
+        <p>サブスクリプションの購入と、購入済みかどうかの確認に使います。アプリの仕分けは端末の中だけで行います。インストール済みアプリの一覧を Shelfy が送信することはありません。</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:2.6rem">動作環境</h2>
+    <dl class="spec">
+      <div><dt>対応</dt><dd>Android 8.0 以降</dd></div>
+      <div><dt>アカウント</dt><dd>不要。登録もログインもありません</dd></div>
+      <div><dt>プレミアム</dt><dd>月額または年額。価格はお住まいの国の通貨で表示されます</dd></div>
+      <div><dt>言語</dt><dd>日本語 / English（端末の言語に合わせて切り替わります）</dd></div>
+      <div><dt>作者</dt><dd>HY Studio</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <a href="https://hystudio21.com/shelfy/privacy.html">プライバシーポリシー</a>
+    <a href="https://hystudio21.com/legal/tokushoho.html">特定商取引法に基づく表記</a>
+    <a href="mailto:info@hystudio21.com">お問い合わせ</a>
+    <a href="https://hystudio21.com/">HY Studio</a>
+    <span class="sp">SHELFY</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
