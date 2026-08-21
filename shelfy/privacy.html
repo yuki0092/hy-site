@@ -1,0 +1,125 @@
+<!doctype html>
+<!--
+  Shelfy privacy policy. Published at https://hystudio21.com/shelfy/ from the public
+  repository yuki0092/hy-site, alongside noricho/ and appvolume/. The Japanese page is
+  privacy.html and the English one is privacy.en.html; that is the shape the other two
+  apps already use, and Play Console takes a policy URL per language.
+
+  Dated 2026-08-21, the day it went up. That is the date this document took effect, not
+  the day the app ships — the two are deliberately different, because Play Console asks
+  for a live policy URL before an internal test build can be uploaded, which is well
+  before release. Changing the text later means changing that date with it.
+
+  The developer name and the contact address are settled: HY Studio and info@hystudio21.com.
+
+  This version describes the app with billing in it — the permission list names INTERNET,
+  ACCESS_NETWORK_STATE and BILLING, which the Play Billing library brings with it. That
+  matches what will ship, because the first release carries the subscription.
+
+  The URL also appears in two other places and has to agree with this one:
+    1. Play Console → App content → Privacy policy
+    2. PRIVACY_POLICY_URL in MainActivity.kt
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shelfy プライバシーポリシー</title>
+<style>
+<style>
+  :root{ --ink:#1B222A; --muted:#5F6B73; --line:#E1E4E6; --page:#FFFFFF; --accent:#1E8A82; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#4FC7BA; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:var(--page);color:var(--ink);
+       font-family:"Hiragino Sans","Noto Sans JP",system-ui,-apple-system,sans-serif;
+       font-size:16px;line-height:1.9;-webkit-text-size-adjust:100%}
+  main{max-width:680px;margin:0 auto}
+  h1{font-size:24px;line-height:1.4;margin:0 0 4px}
+  h2{font-size:18px;margin:38px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+  h3{font-size:16px;margin:22px 0 6px}
+  p,li{margin:0 0 12px}
+  ul{padding-left:1.3em}
+  .updated{color:var(--muted);font-size:14px;margin:0 0 30px}
+  .lead{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:0 0 28px}
+  .lead p{margin:0 0 8px}
+  .lead p:last-child{margin:0}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
+  .lang{margin-top:70px;padding-top:24px;border-top:2px solid var(--line)}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:14px}
+  a{color:var(--accent)}
+</style>
+</style>
+</head>
+<body>
+<main>
+
+<h1>Shelfy プライバシーポリシー</h1>
+<p class="updated">最終更新日：2026年8月21日</p>
+
+<div class="lead">
+  <p><strong>Shelfy は利用者の情報を収集しません。どこにも送信しません。</strong></p>
+  <p>広告も解析ツールも組み込んでいません。アプリが読み取る情報は、仕分けのために端末の中だけで扱います。</p>
+  <p>Shelfy はサブスクリプションを提供するため、Google Play の課金ライブラリを組み込んでおり、これに伴ってインターネットに接続する権限（<code>INTERNET</code>）を持っています。<strong>この通信は購入と契約状態の確認のためだけに Google Play との間で行われるもので、Shelfy が利用者の情報を送る経路ではありません。</strong>アプリ名や使用状況、設定の内容が外部へ送られることはありません。</p>
+</div>
+
+<h2>1. 収集する個人情報</h2>
+<p>ありません。氏名、メールアドレス、電話番号、位置情報、連絡先、広告IDその他の識別子を含め、個人を特定できる情報を一切取得しません。アカウント登録もありません。</p>
+
+<h2>2. 端末の中だけで扱う情報</h2>
+<p>アプリを仕分けるために、Shelfy は端末上で次の情報を読み取ります。いずれも端末の外に出ることはなく、保存されるとしても端末内のアプリ専用領域に限られます。</p>
+
+<h3>インストール済みアプリの情報</h3>
+<p>ホーム画面から起動できるアプリの表示名、パッケージ名、アイコンを読み取り、カテゴリの判定に使います。判定は端末に同梱した対応表とキーワードだけで行い、外部の問い合わせ先はありません。</p>
+
+<h3>アプリの使用状況（任意）</h3>
+<p>「よく使う」タブの並び順を決めるためだけに、直近2週間に各アプリが前面に出た回数を参照します。これは Android の「使用状況へのアクセス」を利用者が明示的に許可した場合のみで、<strong>許可しなくても他のすべての機能は通常どおり使えます</strong>。参照した内容は保存も送信もせず、並べ替えに使ったあとは残りません。</p>
+
+<h3>利用者の設定</h3>
+<p>手動で移動したアプリとその移動先、自分で作成したカテゴリ、カテゴリの並び順、各種設定を端末内に保存します。アプリをアンインストールすると、これらは端末から削除されます。</p>
+
+<h2>3. 第三者への提供</h2>
+<p>ありません。上記の情報を第三者と共有することも、販売することもありません。広告ネットワーク、解析サービス、クラッシュ報告サービスのいずれも組み込んでいません。</p>
+<p>唯一の外部との接点は、サブスクリプションを扱う Google Play です。詳しくは「6. サブスクリプションの購入」をご覧ください。</p>
+
+<h2>4. バックアップと機種変更</h2>
+<p>Shelfy の設定は<strong>クラウドバックアップの対象から除外</strong>しています。上記の設定がGoogleのサーバーへ送られることはありません。</p>
+<p>一方で、新しい端末を設定する際の<strong>端末から端末への直接コピーは有効</strong>にしています。機種変更のときに設定がそのまま引き継がれますが、この経路はクラウドを経由しません。（Android 11以前の端末では、この2つを区別する仕組みが存在しないため、どちらも無効にしています。）</p>
+
+<h2>5. 設定の書き出し</h2>
+<p>設定画面から、利用者自身の操作で設定内容をファイルに書き出せます。このファイルには、手動で移動したアプリのパッケージ名、作成したカテゴリ、並び順、設定項目が含まれます。</p>
+<p>書き出し先は、そのとき利用者が選んだアプリやサービスです。Shelfy が送信先を決めることはなく、自動で書き出すこともありません。<strong>ファイルを渡したあとの取り扱いは、渡した先のサービスの規約とプライバシーポリシーに従います。</strong></p>
+
+<h2>6. サブスクリプションの購入</h2>
+<p>Shelfy の一部の機能は有料のサブスクリプションで使えるようになります。<strong>購入手続きはすべて Google Play が行います。</strong>Shelfy がクレジットカード番号などの支払い情報を受け取ることも、保存することもありません。</p>
+<p>Shelfy が扱うのは「契約が有効かどうか」という結果だけです。この判定結果は端末内に保存され、機内モードなどで Google Play に問い合わせできないときにも使えるようにしています。</p>
+<p>購入の際に Google が取得する情報は、<a href="https://policies.google.com/privacy">Google のプライバシーポリシー</a>に従います。解約、返金、支払い方法の変更は Google Play ストアから行えます。</p>
+
+<h2>7. 使用する権限</h2>
+<ul>
+  <li><strong>使用状況へのアクセス（PACKAGE_USAGE_STATS）</strong>：「よく使う」タブの並び順を決めるためだけに使います。任意です。</li>
+  <li><strong>アプリ削除の要求（REQUEST_DELETE_PACKAGES）</strong>：設定で「アンインストールを許可」をオンにしたときだけ、Android 標準の削除確認画面を開きます。Shelfy がアプリを削除することはありません。</li>
+  <li><strong>インストール済みアプリの参照</strong>：ホーム画面から起動できるアプリの一覧を取得します。仕分けの対象を知るために必要です。</li>
+  <li><strong>課金（com.android.vending.BILLING）</strong>：サブスクリプションの購入と、契約状態の確認に使います。</li>
+  <li><strong>インターネット接続（INTERNET）・ネットワーク状態の参照（ACCESS_NETWORK_STATE）</strong>：Google Play の課金ライブラリが必要とするものです。Shelfy 自身がこの経路で情報を送ることはありません。</li>
+</ul>
+<p>位置情報、カメラ、マイク、連絡先、ストレージへの権限は<strong>要求していません</strong>。</p>
+
+<h2>8. 子どもの利用について</h2>
+<p>Shelfy はどの年齢の利用者からも情報を収集しません。年齢を問わず安全にお使いいただけます。</p>
+
+<h2>9. 本ポリシーの変更</h2>
+<p>内容を変更する場合は、このページを更新し、上部の最終更新日を改めます。収集する情報が増えるような変更を行う場合は、アプリの更新時に明示します。</p>
+
+<h2>10. お問い合わせ</h2>
+<p>本ポリシーやアプリについてのご質問は、<a href="mailto:info@hystudio21.com">info@hystudio21.com</a> までご連絡ください。</p>
+
+<footer>
+  <p>Shelfy — HY Studio</p>
+</footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<!--
+  Shelfy privacy policy. Published at https://hystudio21.com/shelfy/ from the public
+  repository yuki0092/hy-site, alongside noricho/ and appvolume/. The Japanese page is
+  privacy.html and the English one is privacy.en.html; that is the shape the other two
+  apps already use, and Play Console takes a policy URL per language.
+
+  Dated 2026-08-21, the day it went up. That is the date this document took effect, not
+  the day the app ships — the two are deliberately different, because Play Console asks
+  for a live policy URL before an internal test build can be uploaded, which is well
+  before release. Changing the text later means changing that date with it.
+
+  The developer name and the contact address are settled: HY Studio and info@hystudio21.com.
+
+  This version describes the app with billing in it — the permission list names INTERNET,
+  ACCESS_NETWORK_STATE and BILLING, which the Play Billing library brings with it. That
+  matches what will ship, because the first release carries the subscription.
+
+  The URL also appears in two other places and has to agree with this one:
+    1. Play Console → App content → Privacy policy
+    2. PRIVACY_POLICY_URL in MainActivity.kt
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shelfy Privacy Policy</title>
+<style>
+<style>
+  :root{ --ink:#1B222A; --muted:#5F6B73; --line:#E1E4E6; --page:#FFFFFF; --accent:#1E8A82; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#4FC7BA; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:var(--page);color:var(--ink);
+       font-family:"Hiragino Sans","Noto Sans JP",system-ui,-apple-system,sans-serif;
+       font-size:16px;line-height:1.9;-webkit-text-size-adjust:100%}
+  main{max-width:680px;margin:0 auto}
+  h1{font-size:24px;line-height:1.4;margin:0 0 4px}
+  h2{font-size:18px;margin:38px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+  h3{font-size:16px;margin:22px 0 6px}
+  p,li{margin:0 0 12px}
+  ul{padding-left:1.3em}
+  .updated{color:var(--muted);font-size:14px;margin:0 0 30px}
+  .lead{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:0 0 28px}
+  .lead p{margin:0 0 8px}
+  .lead p:last-child{margin:0}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
+  .lang{margin-top:70px;padding-top:24px;border-top:2px solid var(--line)}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:14px}
+  a{color:var(--accent)}
+</style>
+</style>
+</head>
+<body>
+<main>
+
+<h1>Shelfy Privacy Policy</h1>
+<p class="updated">Last updated: 21 August 2026</p>
+
+<div class="lead">
+  <p><strong>Shelfy collects nothing and sends nothing anywhere.</strong></p>
+  <p>There is no advertising and no analytics of any kind. Everything the app reads, it reads on your phone, to sort your apps.</p>
+  <p>Shelfy offers a subscription, so it includes Google Play's billing library and holds the <code>INTERNET</code> permission that comes with it. <strong>That connection exists to complete a purchase and to check whether a subscription is active — it is not a route by which your information leaves the phone.</strong> App names, usage figures and settings are never sent anywhere.</p>
+</div>
+
+<h2>1. Personal information collected</h2>
+<p>None. No name, email address, phone number, location, contacts, advertising ID or other identifier is gathered. There is no account to create.</p>
+
+<h2>2. Information handled on your device only</h2>
+<p>To sort your apps, Shelfy reads the following on your device. None of it leaves the phone, and anything stored is kept in the app's private storage.</p>
+
+<h3>Installed apps</h3>
+<p>The display name, package name and icon of apps that can be launched from your home screen, used to decide a category. Categories are decided using a table and keyword rules bundled inside the app; there is nothing to ask.</p>
+
+<h3>App usage (optional)</h3>
+<p>How many times each app came to the foreground over the last two weeks, used only to order the Frequent tab. This requires you to grant Android's Usage access explicitly, and <strong>every other feature works if you decline</strong>. The figures are neither stored nor transmitted.</p>
+
+<h3>Your settings</h3>
+<p>Apps you moved by hand and where you moved them, categories you created, the order of your categories, and your settings. Uninstalling the app removes all of it from the phone.</p>
+
+<h2>3. Sharing with third parties</h2>
+<p>None of the above is shared with or sold to anyone. No advertising network, analytics service or crash-reporting service is included.</p>
+<p>The single point of contact with anything outside your phone is Google Play, which handles the subscription. See section 6.</p>
+
+<h2>4. Backup and changing phones</h2>
+<p>Shelfy's settings are <strong>excluded from cloud backup</strong>, so they are never uploaded to Google's servers.</p>
+<p>The <strong>direct phone-to-phone copy</strong> performed when setting up a new device is allowed, so your settings survive a handset change without passing through a server. On Android 11 and earlier, where the two cannot be told apart, both are disabled.</p>
+
+<h2>5. Exporting your settings</h2>
+<p>You can export your settings to a file from the settings screen. The file contains the package names of apps you moved by hand, the categories you created, their order, and your settings.</p>
+<p>Where it goes is your choice at the moment you export it. Shelfy never picks a destination and never exports on its own. <strong>Once handed over, the file is subject to the terms and privacy policy of whichever service you sent it to.</strong></p>
+
+<h2>6. Buying a subscription</h2>
+<p>Some of Shelfy's features are unlocked by a paid subscription. <strong>Google Play handles the whole purchase.</strong> Shelfy never receives or stores card numbers or any other payment details.</p>
+<p>All Shelfy holds is the answer to one question — whether a subscription is active. That answer is kept on the phone so it still works when Google Play cannot be reached, in aeroplane mode for instance.</p>
+<p>What Google collects during a purchase is covered by <a href="https://policies.google.com/privacy">Google's privacy policy</a>. Cancelling, refunds and payment methods are all managed from the Google Play Store.</p>
+
+<h2>7. Permissions used</h2>
+<ul>
+  <li><strong>Usage access (PACKAGE_USAGE_STATS)</strong> — used for one thing: ordering the Frequent tab. Optional.</li>
+  <li><strong>Request app deletion (REQUEST_DELETE_PACKAGES)</strong> — only when you turn on "Allow uninstalling", and only to open Android's own confirmation screen. Shelfy never removes an app itself.</li>
+  <li><strong>Querying installed apps</strong> — to list the apps that can be launched, which is what there is to sort.</li>
+  <li><strong>Billing (com.android.vending.BILLING)</strong> — to buy a subscription and to check whether one is active.</li>
+  <li><strong>Internet (INTERNET) and network state (ACCESS_NETWORK_STATE)</strong> — required by Google Play's billing library. Shelfy itself sends nothing over this route.</li>
+</ul>
+<p>No location, camera, microphone, contacts or storage permission is <strong>requested</strong>.</p>
+
+<h2>8. Children</h2>
+<p>Shelfy collects no information from users of any age, so it is safe to use at any age.</p>
+
+<h2>9. Changes to this policy</h2>
+<p>Any change is published on this page with the date above updated. A change that would introduce data collection will be stated in the app's release notes.</p>
+
+<h2>10. Contact</h2>
+<p>Questions about this policy or the app: <a href="mailto:info@hystudio21.com">info@hystudio21.com</a></p>
+
+
+<footer>
+  <p>Shelfy — HY Studio</p>
+</footer>
+
+</main>
+</body>
+</html>
