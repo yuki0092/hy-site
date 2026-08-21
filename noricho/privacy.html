@@ -5,13 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ノリ帳 プライバシーポリシー</title>
 <style>
-  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:#1a1a1a;background:#fff}
+  :root{ --ink:#1a1a1a; --muted:#666; --page:#fff; --accent:#1F8F86; --codebg:#f2efe6; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --page:#12181F; --accent:#4FC7BA; --codebg:#1E2630; }
+  }
+  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
   h1{font-size:24px;margin:0 0 4px}
-  .updated{color:#666;font-size:13px;margin:0 0 28px}
-  h2{font-size:18px;margin:32px 0 8px;border-bottom:2px solid #1F8F86;padding-bottom:4px}
-  a{color:#1F8F86}
+  .updated{color:var(--muted);font-size:13px;margin:0 0 28px}
+  h2{font-size:18px;margin:32px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+  a{color:var(--accent)}
   ul{padding-left:20px}
-  code{background:#f2efe6;padding:1px 5px;border-radius:4px}
+  code{background:var(--codebg);padding:1px 5px;border-radius:4px}
 </style>
 </head>
 <body>
