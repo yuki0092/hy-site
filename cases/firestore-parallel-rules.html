@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Firestore の書き込みを並列にしたら、ルールの前提が壊れた | HY Studio</title>
+<meta name="description" content="触るドキュメントが違えば同時に書いてよい、とは限らない。セキュリティルールが見ているドキュメントは、後続の操作すべての前提になっている。">
+<style>
+  :root{ --ink:#1a1a1a; --muted:#666; --line:#e2dceb; --page:#fff; --accent:#7C3FA0; --card:#f7f4fb; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
+  }
+  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  h1{font-size:24px;margin:0 0 4px;line-height:1.4}
+  .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
+  h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+  p{margin:0 0 10px}
+  a{color:var(--accent)}
+  ul{padding-left:20px;margin:0 0 10px}
+  li{margin-bottom:6px}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--card);padding:1px 5px;border-radius:3px}
+  .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
+  .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
+  .get a{font-size:16px;font-weight:700}
+  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<h1>Firestore の書き込みを並列にしたら、ルールの前提が壊れた</h1>
+<p class="updated">Flutter / Cloud Firestore ／ 2026年8月</p>
+
+<div class="get">
+  <p>記録（Markdown・そのまま使えます）</p>
+  <a href="https://github.com/yuki0092/hy-notes/blob/master/firestore-parallel-rules.md">GitHub で開く</a>
+  ・
+  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/firestore-parallel-rules.md">.md をダウンロード</a>
+</div>
+
+<h2>何に詰まったか</h2>
+<p>「触るドキュメントが違うのだから同時に書いてよい」と考えて並列化したところ、<strong>グループへの参加がぐるぐる回ったまま終わらなくなりました。</strong></p>
+<p>厄介だったのは<strong>再起動すると参加できている</strong>こと。データは正しく書かれていて、失敗しているのは<strong>その直後の読み取り</strong>でした。</p>
+
+<h2>原因と対処</h2>
+<ul>
+  <li><strong>セキュリティルールが見ているドキュメントは、他と対等ではない。</strong>それが後続の読み取りすべての前提になっている</li>
+  <li>並列にすると、<strong>そのドキュメントが届く前に読みにいって <code>PERMISSION_DENIED</code> で弾かれる</strong></li>
+  <li><strong>削除では逆向きの罠がある。</strong>先に権限を失うと残りが消せず、<strong>誰にも消せない残骸</strong>になる。しかも画面上は消えたように見える</li>
+  <li>直し方は単純で、<strong>参加では最初に、削除では最後に</strong>書く</li>
+</ul>
+<p>見分け方は <code>rules</code> ファイルで <code>exists(</code> と <code>get(</code> を検索するだけです。そこに出てくるパスが、順序を守る必要のあるドキュメントです。</p>
+
+<h2>使ってください</h2>
+<p>引用・転載・改変に連絡は要りません。同じところで止まっている方の役に立てば幸いです。</p>
+
+<p class="back"><a href="https://hystudio21.com/">HY Studio</a></p>
+
+</body>
+</html>

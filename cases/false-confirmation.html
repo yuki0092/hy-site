@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「確認した」が確認になっていなかった3件 | HY Studio</title>
+<meta name="description" content="APK と AAB で権限が違う／アンインストールしても自動バックアップが書き戻す／GitHub Pages がアンダースコアのファイルを配信しない。どれもエラーが出ないまま間違った結論に至る。">
+<style>
+  :root{ --ink:#1a1a1a; --muted:#666; --line:#e2dceb; --page:#fff; --accent:#7C3FA0; --card:#f7f4fb; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
+  }
+  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  h1{font-size:24px;margin:0 0 4px;line-height:1.4}
+  .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
+  h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+  p{margin:0 0 10px}
+  a{color:var(--accent)}
+  ul{padding-left:20px;margin:0 0 10px}
+  li{margin-bottom:6px}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--card);padding:1px 5px;border-radius:3px}
+  .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
+  .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
+  .get a{font-size:16px;font-weight:700}
+  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<h1>「確認した」が確認になっていなかった3件</h1>
+<p class="updated">Android と GitHub Pages ／ 2026年8月</p>
+
+<div class="get">
+  <p>記録（Markdown・そのまま使えます）</p>
+  <a href="https://github.com/yuki0092/hy-notes/blob/master/false-confirmation.md">GitHub で開く</a>
+  ・
+  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/false-confirmation.md">.md をダウンロード</a>
+</div>
+
+<h2>何に詰まったか</h2>
+<p>作業は正しく、道具の使い方も正しく、<strong>見ている対象だけがずれていた</strong>3件です。</p>
+<p>共通しているのは<strong>失敗したように見えないこと</strong>。エラーも警告も出ないので、間違った結論をそのまま次の判断に使ってしまいます。</p>
+
+<h2>3件の内容</h2>
+<ul>
+  <li><strong>権限が減ったように見えた</strong> — 手元の APK を見ていた。<strong>Google Play が配るのは AAB</strong> で、両者は構成が違う。データセーフティの申告に直結する</li>
+  <li><strong>アンインストールしたのに設定が残っていた</strong> — Android の自動バックアップが<strong>インストールの4秒後に書き戻していた</strong>。消すコマンドは<strong>成功と表示されるのに効かない</strong></li>
+  <li><strong>ページは 200 なのにスタイルが当たらない</strong> — GitHub Pages は既定で<strong>アンダースコアで始まるファイルを配信しない</strong>。URL の疎通確認をすり抜ける</li>
+</ul>
+
+<h2>使ってください</h2>
+<p>引用・転載・改変に連絡は要りません。同じところで止まっている方の役に立てば幸いです。</p>
+
+<p class="back"><a href="https://hystudio21.com/">HY Studio</a></p>
+
+</body>
+</html>

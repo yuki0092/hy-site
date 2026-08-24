@@ -234,6 +234,18 @@
               <p class="ja">署名だけで7回失敗した。エラーメッセージと、実際に足りないものが毎回違う。</p>
               <p class="en">Seven failures on code signing alone — each time the error named something other than what was actually missing.</p>
             </div>
+
+            <div class="note-item">
+              <a href="/cases/false-confirmation.html"><span class="ja">「確認した」が確認になっていなかった3件</span><span class="en">Three times "verified" verified nothing</span></a>
+              <p class="ja">APK と AAB で権限が違う。消しても自動バックアップが書き戻す。どれもエラーが出ない。</p>
+              <p class="en">Permissions differ between APK and AAB; auto-backup restores what you deleted. None of it raises an error.</p>
+            </div>
+
+            <div class="note-item">
+              <a href="/cases/firestore-parallel-rules.html"><span class="ja">Firestore の並列書き込みが、ルールの前提を壊す</span><span class="en">Parallel writes break what Firestore rules assume</span></a>
+              <p class="ja">触るドキュメントが違えば同時でよい、とは限らない。参加は最初、削除は最後。</p>
+              <p class="en">Different documents doesn't mean safe to parallelise. Join first, delete last.</p>
+            </div>
           </div>
         </div>
       </div>
