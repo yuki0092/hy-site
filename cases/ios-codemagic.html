@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mac なしで Flutter アプリを iOS に出す | HY Studio</title>
+<meta name="description" content="Mac を持たずに Flutter アプリを App Store Connect へ上げ、TestFlight で実機に入れるまでの記録。署名で7回失敗した原因と、Codemagic の設定で外すと落ちる箇所。">
+<style>
+  :root{ --ink:#1a1a1a; --muted:#666; --line:#e2dceb; --page:#fff; --accent:#7C3FA0; --card:#f7f4fb; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
+  }
+  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  h1{font-size:24px;margin:0 0 4px;line-height:1.4}
+  .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
+  h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+  p{margin:0 0 10px}
+  a{color:var(--accent)}
+  ul{padding-left:20px;margin:0 0 10px}
+  li{margin-bottom:6px}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--card);padding:1px 5px;border-radius:3px}
+  .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
+  .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
+  .get a{font-size:16px;font-weight:700}
+  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<h1>Mac なしで Flutter アプリを iOS に出す</h1>
+<p class="updated">Codemagic で署名を通すまで ／ 2026年8月</p>
+
+<div class="get">
+  <p>手順書（Markdown・そのまま使えます）</p>
+  <a href="https://github.com/yuki0092/hy-notes/blob/master/flutter-ios-codemagic.md">GitHub で開く</a>
+  ・
+  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/flutter-ios-codemagic.md">.md をダウンロード</a>
+</div>
+
+<h2>何に詰まったか</h2>
+<p>Mac を1台も持たずに Flutter アプリを App Store Connect へ上げようとして、<strong>署名だけで7回失敗しました。</strong></p>
+<p>厄介だったのは、<strong>エラーメッセージが指しているものと、実際に足りないものが毎回違った</strong>ことです。「開発用の証明書がありません」と出るのに実際に足りないのは Xcode プロジェクトの設定で、「Provisioning Profile が要ります」と出るのに実際に足りないのは証明書を作るための秘密鍵でした。</p>
+<p><strong>メッセージのとおりに対処すると、外し続けます。</strong></p>
+
+<h2>手順書に書いたこと</h2>
+<ul>
+  <li>失敗4種類と、それぞれ実際に足りなかったもの</li>
+  <li>加入から ipa 生成までの手順（<strong>Mac は要りません</strong>。証明書も Provisioning Profile も Codemagic に作らせます）</li>
+  <li><code>codemagic.yaml</code> で<strong>外すと落ちる箇所</strong>と、その理由</li>
+  <li>TestFlight の内部テストと外部テストの違い（<strong>内部テストなら審査も入力も要りません</strong>）</li>
+  <li>実機で画面が真っ白になったときの原因と、<strong>クラッシュログが出ない理由</strong></li>
+  <li>Android から持ち込むときに見落とした4件（広告の ID・ライセンス一覧・輸出コンプライアンス・ATT）</li>
+</ul>
+<p><strong>実際に通した経路だけを書いています。</strong>試していないことは「未確認」と明記しました。</p>
+
+<h2>使ってください</h2>
+<p>引用・転載・改変に連絡は要りません。同じところで止まっている方の役に立てば幸いです。</p>
+
+<p class="back"><a href="https://hystudio21.com/">HY Studio</a></p>
+
+</body>
+</html>

@@ -144,6 +144,28 @@
   }
   .apps-empty p{color:var(--ink-2); font-size:13.5px}
 
+  /* APPS の下を2カラムに。左が公開アプリ、右がノート。
+     狭い画面では縦に積む（アプリ→ノートの順）。 */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start}
+  @media (max-width:640px){ .cols{grid-template-columns:1fr} }
+  .col{display:flex; flex-direction:column; gap:12px}
+  .col > .collbl{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; color:var(--ink-2);
+  }
+  .notes{display:flex; flex-direction:column; gap:10px}
+  .note-item{
+    border:1px solid var(--line); border-radius:14px; padding:16px 18px;
+    background:var(--card); display:flex; flex-direction:column; gap:6px;
+  }
+  .note-item a{
+    color:var(--ink); text-decoration:none; font-size:14.5px; font-weight:600;
+    border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    align-self:flex-start; line-height:1.5;
+  }
+  .note-item a:hover{border-bottom-color:var(--accent)}
+  .note-item a:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+  .note-item p{color:var(--ink-2); font-size:12.5px; line-height:1.7}
+
   footer{
     margin-top:14vh; padding-top:22px; border-top:1px solid var(--line);
     display:flex; flex-wrap:wrap; gap:32px;
@@ -188,14 +210,32 @@
 
       <div class="divider">
         <span class="rule"></span>
-        <span class="lbl">APPS</span>
+        <span class="lbl">APPS &amp; NOTES</span>
         <span class="rule"></span>
       </div>
 
-      <div class="apps-empty">
-        <span class="dot" aria-hidden="true"></span>
-        <p class="ja">公開しているアプリはまだありません。</p>
-        <p class="en">No apps released yet.</p>
+      <div class="cols">
+        <div class="col">
+          <span class="collbl ja">公開アプリ</span>
+          <span class="collbl en">APPS</span>
+          <div class="apps-empty">
+            <span class="dot" aria-hidden="true"></span>
+            <p class="ja">公開しているアプリはまだありません。</p>
+            <p class="en">No apps released yet.</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <span class="collbl ja">つまずいた記録と、対策の Markdown</span>
+          <span class="collbl en">NOTES &amp; MARKDOWN</span>
+          <div class="notes">
+            <div class="note-item">
+              <a href="/cases/ios-codemagic.html"><span class="ja">Mac なしで Flutter アプリを iOS に出す</span><span class="en">Shipping a Flutter app to iOS without a Mac</span></a>
+              <p class="ja">署名だけで7回失敗した。エラーメッセージと、実際に足りないものが毎回違う。</p>
+              <p class="en">Seven failures on code signing alone — each time the error named something other than what was actually missing.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <footer>
