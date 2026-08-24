@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ルールが参照するドキュメントは、書き込み順序を決める | HY Studio</title>
+<meta name="description" content="Firestore のセキュリティルールで exists() を使うと、そのドキュメントは他と並列に扱えなくなる。作成は最初、削除は最後。PERMISSION_DENIED が出るのにルールは正しい、という状況の原因。">
+<style>
+  :root{ --ink:#1a1a1a; --muted:#666; --line:#e2dceb; --page:#fff; --accent:#7C3FA0; --card:#f7f4fb; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
+  }
+  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  h1{font-size:24px;margin:0 0 4px;line-height:1.4}
+  .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
+  h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+  p{margin:0 0 10px}
+  a{color:var(--accent)}
+  ul{padding-left:20px;margin:0 0 10px}
+  li{margin-bottom:6px}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--card);padding:1px 5px;border-radius:3px}
+  .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
+  .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
+  .get a{font-size:16px;font-weight:700}
+  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<h1>ルールが参照するドキュメントは、書き込み順序を決める</h1>
+<p class="updated">Flutter / Cloud Firestore ／ 2026年8月</p>
+
+<div class="get">
+  <p>記録（Markdown・そのまま使えます）</p>
+  <a href="https://github.com/yuki0092/hy-notes/blob/master/firestore-rules-write-order.md">GitHub で開く</a>
+  ・
+  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/firestore-rules-write-order.md">.md をダウンロード</a>
+</div>
+
+<h2>何の話か</h2>
+<p>Firestore のセキュリティルールで <code>exists()</code> や <code>get()</code> を使うと、<strong>そのドキュメントは他と対等ではなくなります。</strong>後続の読み書きすべての前提になり、<strong>並列に扱えなくなります。</strong></p>
+<p>エラーは <code>PERMISSION_DENIED</code> としか出ないので、ルールの書き方を疑って時間を使うことになります。<strong>ルールは正しく、順序だけが違います。</strong></p>
+
+<h2>書いてあること</h2>
+<ul>
+  <li><strong>作成は最初、削除は最後。</strong>どちらも「前提が成立している時間を、それを必要とする処理より長くする」という同じ形</li>
+  <li><strong>削除には逆向きの罠がある。</strong>先に権限を失うと残りが消せず、<strong>誰にも消せない残骸</strong>になる。しかも画面上は消えたように見える</li>
+  <li><strong>症状から原因を引く表。</strong>「再起動すると成功している」「ルールは正しいのに弾かれる」「別の端末では残っている」</li>
+  <li>依存を見つけるには <code>rules</code> ファイルで <code>exists(</code> と <code>get(</code> を検索するだけ</li>
+</ul>
+
+<h2>使ってください</h2>
+<p>引用・転載・改変に連絡は要りません。同じところで止まっている方の役に立てば幸いです。</p>
+
+<p class="back"><a href="https://hystudio21.com/">HY Studio</a></p>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自分で宣言していない権限が入る | HY Studio</title>
+<meta name="description" content="Google Play のデータセーフティ申告の前に確認すること。AndroidManifest.xml を読んでも実際の権限は分からない。Flutter アプリ5本の実測値と、AAB で確認する理由。">
+<style>
+  :root{ --ink:#1a1a1a; --muted:#666; --line:#e2dceb; --page:#fff; --accent:#7C3FA0; --card:#f7f4fb; }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
+  }
+  body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  h1{font-size:24px;margin:0 0 4px;line-height:1.4}
+  .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
+  h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+  p{margin:0 0 10px}
+  a{color:var(--accent)}
+  ul{padding-left:20px;margin:0 0 10px}
+  li{margin-bottom:6px}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--card);padding:1px 5px;border-radius:3px}
+  .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
+  .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
+  .get a{font-size:16px;font-weight:700}
+  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<h1>自分で宣言していない権限が入る</h1>
+<p class="updated">Play のデータセーフティ申告の前に確認すること ／ 2026年8月</p>
+
+<div class="get">
+  <p>記録（Markdown・そのまま使えます）</p>
+  <a href="https://github.com/yuki0092/hy-notes/blob/master/android-permissions-data-safety.md">GitHub で開く</a>
+  ・
+  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/android-permissions-data-safety.md">.md をダウンロード</a>
+</div>
+
+<h2>何の話か</h2>
+<p>データセーフティは<strong>アプリが実際に何を集めているか</strong>の申告で、実際の動きと食い違うと<strong>公開が止まります</strong>。</p>
+<p>ところが <code>AndroidManifest.xml</code> を読んでも、実際の権限は分かりません。<strong>ライブラリが連れてくる権限は1行も書かれていない</strong>からです。</p>
+
+<h2>書いてあること</h2>
+<ul>
+  <li><strong>アプリ5本の実測値。</strong>宣言が <code>INTERNET</code> 1件だけのアプリに10件入っていた。<strong>通信しないゲームでも4件</strong></li>
+  <li><strong>広告 SDK が連れてくる4件</strong>と、それがデータセーフティのどこに効くか</li>
+  <li><strong>確認するのは AAB で、APK ではない理由。</strong>同じアプリの前後比較で<strong>3件ぶんずれた実例</strong></li>
+  <li><code>bundletool</code> で AAB の権限を出すコマンド</li>
+</ul>
+
+<h2>使ってください</h2>
+<p>引用・転載・改変に連絡は要りません。同じところで止まっている方の役に立てば幸いです。</p>
+
+<p class="back"><a href="https://hystudio21.com/">HY Studio</a></p>
+
+</body>
+</html>

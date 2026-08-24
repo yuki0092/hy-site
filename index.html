@@ -236,15 +236,15 @@
             </div>
 
             <div class="note-item">
-              <a href="/cases/false-confirmation.html"><span class="ja">「確認した」が確認になっていなかった3件</span><span class="en">Three times "verified" verified nothing</span></a>
-              <p class="ja">APK と AAB で権限が違う。消しても自動バックアップが書き戻す。どれもエラーが出ない。</p>
-              <p class="en">Permissions differ between APK and AAB; auto-backup restores what you deleted. None of it raises an error.</p>
+              <a href="/cases/android-permissions.html"><span class="ja">自分で宣言していない権限が入る</span><span class="en">Permissions you never declared</span></a>
+              <p class="ja">Play のデータセーフティ申告の前に。マニフェストを読んでも実際の権限は分からない。</p>
+              <p class="en">Before filing Play's Data safety form: the manifest doesn't tell you what actually ships.</p>
             </div>
 
             <div class="note-item">
-              <a href="/cases/firestore-parallel-rules.html"><span class="ja">Firestore の並列書き込みが、ルールの前提を壊す</span><span class="en">Parallel writes break what Firestore rules assume</span></a>
-              <p class="ja">触るドキュメントが違えば同時でよい、とは限らない。参加は最初、削除は最後。</p>
-              <p class="en">Different documents doesn't mean safe to parallelise. Join first, delete last.</p>
+              <a href="/cases/firestore-rules.html"><span class="ja">ルールが参照するドキュメントは、書き込み順序を決める</span><span class="en">What the rules read decides your write order</span></a>
+              <p class="ja">Firestore で <code>exists()</code> を使うと並列化できなくなる。作成は最初、削除は最後。</p>
+              <p class="en">An <code>exists()</code> in your Firestore rules makes that document impossible to parallelise.</p>
             </div>
           </div>
         </div>
