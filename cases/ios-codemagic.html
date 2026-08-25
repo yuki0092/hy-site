@@ -19,7 +19,20 @@
   @media (prefers-color-scheme:dark){
     :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
   }
+  [data-lang="ja"] .en{display:none}
+  [data-lang="en"] .ja{display:none}
   body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 22px}
+  .top a{font-size:13.5px}
+  .langtoggle{
+    font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.1em;
+    background:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+    color:var(--muted);cursor:pointer;flex:none;
+  }
+  .langtoggle:hover{color:var(--accent);border-color:var(--accent)}
+  .langtoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .langtoggle .cur{color:var(--ink)}
+  .langtoggle .sep{opacity:.4}
   h1{font-size:24px;margin:0 0 4px;line-height:1.4}
   .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
   h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
@@ -31,30 +44,50 @@
   .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
   .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
   .get a{font-size:16px;font-weight:700}
-  .back{display:flex;gap:18px;align-items:baseline}
+  .back{display:flex;gap:18px;align-items:baseline;margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
   .free{color:var(--muted)}
-  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
 </style>
 </head>
 <body>
 
-<h1>Mac なしで Flutter アプリを iOS に出す</h1>
-<p class="updated">Codemagic で署名を通すまで ／ 2026年8月</p>
-
-<div class="get">
-  <p>手順書（Markdown・そのまま使えます）</p>
-  <a href="https://github.com/yuki0092/hy-notes/blob/master/flutter-ios-codemagic.md">GitHub で開く</a>
-  ・
-  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/flutter-ios-codemagic.md">.md をダウンロード</a>
+<div class="top">
+  <a href="https://hystudio21.com/">← HY Studio</a>
+  <button class="langtoggle" id="langBtn" type="button" aria-label="Switch language">
+    <span class="cur" data-tag="ja">JA</span><span class="sep">/</span><span data-tag="en">EN</span>
+  </button>
 </div>
 
-<h2>何に詰まったか</h2>
-<p>Mac を1台も持たずに Flutter アプリを App Store Connect へ上げようとして、<strong>署名だけで7回失敗しました。</strong></p>
-<p>厄介だったのは、<strong>エラーメッセージが指しているものと、実際に足りないものが毎回違った</strong>ことです。「開発用の証明書がありません」と出るのに実際に足りないのは Xcode プロジェクトの設定で、「Provisioning Profile が要ります」と出るのに実際に足りないのは証明書を作るための秘密鍵でした。</p>
-<p><strong>メッセージのとおりに対処すると、外し続けます。</strong></p>
+<h1><span class="ja">Mac なしで Flutter アプリを iOS に出す</span><span class="en">Shipping a Flutter app to iOS without a Mac</span></h1>
+<p class="updated"><span class="ja">Codemagic で署名を通すまで ／ 2026年8月</span><span class="en">Getting code signing to pass on Codemagic — August 2026</span></p>
 
-<h2>手順書に書いたこと</h2>
-<ul>
+<div class="get">
+  <p><span class="ja">手順書（Markdown・そのまま使えます）</span><span class="en">The guide (Markdown, ready to use)</span></p>
+  <span class="ja">
+    <a href="https://github.com/yuki0092/hy-notes/blob/master/flutter-ios-codemagic.md">GitHub で開く</a>
+    ・
+    <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/flutter-ios-codemagic.md">.md をダウンロード</a>
+  </span>
+  <span class="en">
+    <a href="https://github.com/yuki0092/hy-notes/blob/master/flutter-ios-codemagic.en.md">Open on GitHub</a>
+    ・
+    <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/flutter-ios-codemagic.en.md">Download the .md</a>
+  </span>
+</div>
+
+<h2><span class="ja">何に詰まったか</span><span class="en">Where it got stuck</span></h2>
+<div class="ja">
+  <p>Mac を1台も持たずに Flutter アプリを App Store Connect へ上げようとして、<strong>署名だけで7回失敗しました。</strong></p>
+  <p>厄介だったのは、<strong>エラーメッセージが指しているものと、実際に足りないものが毎回違った</strong>ことです。「開発用の証明書がありません」と出るのに実際に足りないのは Xcode プロジェクトの設定で、「Provisioning Profile が要ります」と出るのに実際に足りないのは証明書を作るための秘密鍵でした。</p>
+  <p><strong>メッセージのとおりに対処すると、外し続けます。</strong></p>
+</div>
+<div class="en">
+  <p>Getting a Flutter app onto App Store Connect without owning a single Mac took <strong>seven failures on code signing alone.</strong></p>
+  <p>The awkward part was that <strong>the error named something other than what was actually missing, every time.</strong> "No development certificates available" really meant the Xcode project had no signing settings; "requires a provisioning profile" really meant the private key needed to create a certificate was missing.</p>
+  <p><strong>Act on the message and you keep going the wrong way.</strong></p>
+</div>
+
+<h2><span class="ja">手順書に書いたこと</span><span class="en">What the guide covers</span></h2>
+<ul class="ja">
   <li>失敗4種類と、それぞれ実際に足りなかったもの</li>
   <li>加入から ipa 生成までの手順（<strong>Mac は要りません</strong>。証明書も Provisioning Profile も Codemagic に作らせます）</li>
   <li><code>codemagic.yaml</code> で<strong>外すと落ちる箇所</strong>と、その理由</li>
@@ -62,9 +95,43 @@
   <li>実機で画面が真っ白になったときの原因と、<strong>クラッシュログが出ない理由</strong></li>
   <li>Android から持ち込むときに見落とした4件（広告の ID・ライセンス一覧・輸出コンプライアンス・ATT）</li>
 </ul>
-<p><strong>実際に通した経路だけを書いています。</strong>試していないことは「未確認」と明記しました。</p>
+<ul class="en">
+  <li>Four kinds of failure, and what was actually missing in each</li>
+  <li>Every step from enrolment to a built ipa (<strong>no Mac needed</strong> — Codemagic creates the certificates and provisioning profiles)</li>
+  <li>The parts of <code>codemagic.yaml</code> that <strong>break if you change them</strong>, and why</li>
+  <li>Internal vs external TestFlight (<strong>internal needs neither review nor the information form</strong>)</li>
+  <li>Why the app shows a blank screen on device, and <strong>why no crash log appears</strong></li>
+  <li>Four things missed when porting from Android (ad IDs, licence list, export compliance, ATT)</li>
+</ul>
+<p class="ja"><strong>実際に通した経路だけを書いています。</strong>試していないことは「未確認」と明記しました。</p>
+<p class="en"><strong>Only routes that were actually completed are written down.</strong> Anything untested is marked as such.</p>
 
-<p class="back"><span class="free">引用・転載・改変　自由</span><a href="https://hystudio21.com/">HY Studio</a></p>
+<p class="back">
+  <span class="free"><span class="ja">引用・転載・改変　自由</span><span class="en">Quote, republish, and modify freely</span></span>
+  <a href="https://hystudio21.com/">HY Studio</a>
+</p>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('langBtn');
+    var tagJa = btn.querySelector('[data-tag="ja"]');
+    var tagEn = btn.querySelector('[data-tag="en"]');
+    function apply(lang){
+      root.setAttribute('data-lang', lang);
+      root.setAttribute('lang', lang);
+      tagJa.className = lang === 'ja' ? 'cur' : '';
+      tagEn.className = lang === 'en' ? 'cur' : '';
+      try{ localStorage.setItem('hy-lang', lang); }catch(e){}
+    }
+    var saved = 'ja';
+    try{ saved = localStorage.getItem('hy-lang') || 'ja'; }catch(e){}
+    apply(saved);
+    btn.addEventListener('click', function(){
+      apply(root.getAttribute('data-lang') === 'ja' ? 'en' : 'ja');
+    });
+  })();
+</script>
 
 </body>
 </html>

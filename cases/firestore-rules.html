@@ -19,7 +19,20 @@
   @media (prefers-color-scheme:dark){
     :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
   }
+  [data-lang="ja"] .en{display:none}
+  [data-lang="en"] .ja{display:none}
   body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 22px}
+  .top a{font-size:13.5px}
+  .langtoggle{
+    font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.1em;
+    background:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+    color:var(--muted);cursor:pointer;flex:none;
+  }
+  .langtoggle:hover{color:var(--accent);border-color:var(--accent)}
+  .langtoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .langtoggle .cur{color:var(--ink)}
+  .langtoggle .sep{opacity:.4}
   h1{font-size:24px;margin:0 0 4px;line-height:1.4}
   .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
   h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
@@ -31,36 +44,86 @@
   .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
   .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
   .get a{font-size:16px;font-weight:700}
-  .back{display:flex;gap:18px;align-items:baseline}
+  .back{display:flex;gap:18px;align-items:baseline;margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
   .free{color:var(--muted)}
-  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
 </style>
 </head>
 <body>
 
-<h1>ルールが参照するドキュメントは、書き込み順序を決める</h1>
-<p class="updated">Flutter / Cloud Firestore ／ 2026年8月</p>
-
-<div class="get">
-  <p>記録（Markdown・そのまま使えます）</p>
-  <a href="https://github.com/yuki0092/hy-notes/blob/master/firestore-rules-write-order.md">GitHub で開く</a>
-  ・
-  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/firestore-rules-write-order.md">.md をダウンロード</a>
+<div class="top">
+  <a href="https://hystudio21.com/">← HY Studio</a>
+  <button class="langtoggle" id="langBtn" type="button" aria-label="Switch language">
+    <span class="cur" data-tag="ja">JA</span><span class="sep">/</span><span data-tag="en">EN</span>
+  </button>
 </div>
 
-<h2>何の話か</h2>
-<p>Firestore のセキュリティルールで <code>exists()</code> や <code>get()</code> を使うと、<strong>そのドキュメントは他と対等ではなくなります。</strong>後続の読み書きすべての前提になり、<strong>並列に扱えなくなります。</strong></p>
-<p>エラーは <code>PERMISSION_DENIED</code> としか出ないので、ルールの書き方を疑って時間を使うことになります。<strong>ルールは正しく、順序だけが違います。</strong></p>
+<h1><span class="ja">ルールが参照するドキュメントは、書き込み順序を決める</span><span class="en">What your Firestore rules read decides your write order</span></h1>
+<p class="updated"><span class="ja">Flutter / Cloud Firestore ／ 2026年8月</span><span class="en">Flutter / Cloud Firestore — August 2026</span></p>
 
-<h2>書いてあること</h2>
-<ul>
+<div class="get">
+  <p><span class="ja">記録（Markdown・そのまま使えます）</span><span class="en">The notes (Markdown, ready to use)</span></p>
+  <span class="ja">
+    <a href="https://github.com/yuki0092/hy-notes/blob/master/firestore-rules-write-order.md">GitHub で開く</a>
+    ・
+    <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/firestore-rules-write-order.md">.md をダウンロード</a>
+  </span>
+  <span class="en">
+    <a href="https://github.com/yuki0092/hy-notes/blob/master/firestore-rules-write-order.en.md">Open on GitHub</a>
+    ・
+    <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/firestore-rules-write-order.en.md">Download the .md</a>
+  </span>
+</div>
+
+<h2><span class="ja">何の話か</span><span class="en">What this is about</span></h2>
+<div class="ja">
+  <p>Firestore のセキュリティルールで <code>exists()</code> や <code>get()</code> を使うと、<strong>そのドキュメントは他と対等ではなくなります。</strong>後続の読み書きすべての前提になり、<strong>並列に扱えなくなります。</strong></p>
+  <p>エラーは <code>PERMISSION_DENIED</code> としか出ないので、ルールの書き方を疑って時間を使うことになります。<strong>ルールは正しく、順序だけが違います。</strong></p>
+</div>
+<div class="en">
+  <p>Using <code>exists()</code> or <code>get()</code> in your Firestore rules means <strong>that document is no longer a peer of the others.</strong> It becomes a precondition for every read and write that follows, and <strong>can no longer be written in parallel.</strong></p>
+  <p>The only error is <code>PERMISSION_DENIED</code>, so you spend your time rereading the rules. <strong>The rules are correct. Only the order is wrong.</strong></p>
+</div>
+
+<h2><span class="ja">書いてあること</span><span class="en">What it covers</span></h2>
+<ul class="ja">
   <li><strong>作成は最初、削除は最後。</strong>どちらも「前提が成立している時間を、それを必要とする処理より長くする」という同じ形</li>
   <li><strong>削除には逆向きの罠がある。</strong>先に権限を失うと残りが消せず、<strong>誰にも消せない残骸</strong>になる。しかも画面上は消えたように見える</li>
   <li><strong>症状から原因を引く表。</strong>「再起動すると成功している」「ルールは正しいのに弾かれる」「別の端末では残っている」</li>
   <li>依存を見つけるには <code>rules</code> ファイルで <code>exists(</code> と <code>get(</code> を検索するだけ</li>
 </ul>
+<ul class="en">
+  <li><strong>Create first, delete last.</strong> Both are the same shape: keep the precondition true for longer than anything depending on it</li>
+  <li><strong>Deletion has the trap reversed.</strong> Lose permission first and the rest can't be deleted — <strong>orphans nobody can remove</strong>, while the screen shows them gone</li>
+  <li><strong>A symptom-to-cause table.</strong> "Works after a restart", "rejected although the rules are right", "still there on another device"</li>
+  <li>To find the dependency, just search your <code>rules</code> file for <code>exists(</code> and <code>get(</code></li>
+</ul>
 
-<p class="back"><span class="free">引用・転載・改変　自由</span><a href="https://hystudio21.com/">HY Studio</a></p>
+<p class="back">
+  <span class="free"><span class="ja">引用・転載・改変　自由</span><span class="en">Quote, republish, and modify freely</span></span>
+  <a href="https://hystudio21.com/">HY Studio</a>
+</p>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('langBtn');
+    var tagJa = btn.querySelector('[data-tag="ja"]');
+    var tagEn = btn.querySelector('[data-tag="en"]');
+    function apply(lang){
+      root.setAttribute('data-lang', lang);
+      root.setAttribute('lang', lang);
+      tagJa.className = lang === 'ja' ? 'cur' : '';
+      tagEn.className = lang === 'en' ? 'cur' : '';
+      try{ localStorage.setItem('hy-lang', lang); }catch(e){}
+    }
+    var saved = 'ja';
+    try{ saved = localStorage.getItem('hy-lang') || 'ja'; }catch(e){}
+    apply(saved);
+    btn.addEventListener('click', function(){
+      apply(root.getAttribute('data-lang') === 'ja' ? 'en' : 'ja');
+    });
+  })();
+</script>
 
 </body>
 </html>

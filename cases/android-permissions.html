@@ -19,7 +19,20 @@
   @media (prefers-color-scheme:dark){
     :root{ --ink:#E9EDF0; --muted:#98A3AB; --line:#2B3238; --page:#12181F; --accent:#B07BC9; --card:#1A2029; }
   }
+  [data-lang="ja"] .en{display:none}
+  [data-lang="en"] .ja{display:none}
   body{max-width:720px;margin:0 auto;padding:32px 20px 80px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.8;color:var(--ink);background:var(--page)}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 22px}
+  .top a{font-size:13.5px}
+  .langtoggle{
+    font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.1em;
+    background:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+    color:var(--muted);cursor:pointer;flex:none;
+  }
+  .langtoggle:hover{color:var(--accent);border-color:var(--accent)}
+  .langtoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .langtoggle .cur{color:var(--ink)}
+  .langtoggle .sep{opacity:.4}
   h1{font-size:24px;margin:0 0 4px;line-height:1.4}
   .updated{color:var(--muted);font-size:13px;margin:0 0 24px}
   h2{font-size:16px;margin:28px 0 6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
@@ -31,36 +44,86 @@
   .get{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 28px}
   .get p{margin:0 0 6px;font-size:14px;color:var(--muted)}
   .get a{font-size:16px;font-weight:700}
-  .back{display:flex;gap:18px;align-items:baseline}
+  .back{display:flex;gap:18px;align-items:baseline;margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
   .free{color:var(--muted)}
-  .back{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px}
 </style>
 </head>
 <body>
 
-<h1>自分で宣言していない権限が入る</h1>
-<p class="updated">Play のデータセーフティ申告の前に確認すること ／ 2026年8月</p>
-
-<div class="get">
-  <p>記録（Markdown・そのまま使えます）</p>
-  <a href="https://github.com/yuki0092/hy-notes/blob/master/android-permissions-data-safety.md">GitHub で開く</a>
-  ・
-  <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/android-permissions-data-safety.md">.md をダウンロード</a>
+<div class="top">
+  <a href="https://hystudio21.com/">← HY Studio</a>
+  <button class="langtoggle" id="langBtn" type="button" aria-label="Switch language">
+    <span class="cur" data-tag="ja">JA</span><span class="sep">/</span><span data-tag="en">EN</span>
+  </button>
 </div>
 
-<h2>何の話か</h2>
-<p>データセーフティは<strong>アプリが実際に何を集めているか</strong>の申告で、実際の動きと食い違うと<strong>公開が止まります</strong>。</p>
-<p>ところが <code>AndroidManifest.xml</code> を読んでも、実際の権限は分かりません。<strong>ライブラリが連れてくる権限は1行も書かれていない</strong>からです。</p>
+<h1><span class="ja">自分で宣言していない権限が入る</span><span class="en">Permissions you never declared</span></h1>
+<p class="updated"><span class="ja">Play のデータセーフティ申告の前に確認すること ／ 2026年8月</span><span class="en">What to check before filing Play's Data safety form — August 2026</span></p>
 
-<h2>書いてあること</h2>
-<ul>
+<div class="get">
+  <p><span class="ja">記録（Markdown・そのまま使えます）</span><span class="en">The notes (Markdown, ready to use)</span></p>
+  <span class="ja">
+    <a href="https://github.com/yuki0092/hy-notes/blob/master/android-permissions-data-safety.md">GitHub で開く</a>
+    ・
+    <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/android-permissions-data-safety.md">.md をダウンロード</a>
+  </span>
+  <span class="en">
+    <a href="https://github.com/yuki0092/hy-notes/blob/master/android-permissions-data-safety.en.md">Open on GitHub</a>
+    ・
+    <a href="https://raw.githubusercontent.com/yuki0092/hy-notes/master/android-permissions-data-safety.en.md">Download the .md</a>
+  </span>
+</div>
+
+<h2><span class="ja">何の話か</span><span class="en">What this is about</span></h2>
+<div class="ja">
+  <p>データセーフティは<strong>アプリが実際に何を集めているか</strong>の申告で、実際の動きと食い違うと<strong>公開が止まります</strong>。</p>
+  <p>ところが <code>AndroidManifest.xml</code> を読んでも、実際の権限は分かりません。<strong>ライブラリが連れてくる権限は1行も書かれていない</strong>からです。</p>
+</div>
+<div class="en">
+  <p>Play's Data safety form declares <strong>what your app actually collects</strong>, and if it disagrees with what the app does, <strong>your release is blocked</strong>.</p>
+  <p>But reading <code>AndroidManifest.xml</code> won't tell you the real list — <strong>permissions pulled in by libraries appear nowhere in it</strong>.</p>
+</div>
+
+<h2><span class="ja">書いてあること</span><span class="en">What it covers</span></h2>
+<ul class="ja">
   <li><strong>アプリ5本の実測値。</strong>宣言が <code>INTERNET</code> 1件だけのアプリに10件入っていた。<strong>通信しないゲームでも4件</strong></li>
   <li><strong>広告 SDK が連れてくる4件</strong>と、それがデータセーフティのどこに効くか</li>
   <li><strong>確認するのは AAB で、APK ではない理由。</strong>同じアプリの前後比較で<strong>3件ぶんずれた実例</strong></li>
   <li><code>bundletool</code> で AAB の権限を出すコマンド</li>
 </ul>
+<ul class="en">
+  <li><strong>Measurements from five shipping apps.</strong> One declaring only <code>INTERNET</code> shipped ten. <strong>Even an offline game shipped four</strong></li>
+  <li><strong>The four an ads SDK pulls in</strong>, and exactly where they land on the form</li>
+  <li><strong>Why you read the AAB and not the APK</strong> — a case where the two disagreed by three permissions</li>
+  <li>The <code>bundletool</code> command that dumps an AAB's permissions</li>
+</ul>
 
-<p class="back"><span class="free">引用・転載・改変　自由</span><a href="https://hystudio21.com/">HY Studio</a></p>
+<p class="back">
+  <span class="free"><span class="ja">引用・転載・改変　自由</span><span class="en">Quote, republish, and modify freely</span></span>
+  <a href="https://hystudio21.com/">HY Studio</a>
+</p>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('langBtn');
+    var tagJa = btn.querySelector('[data-tag="ja"]');
+    var tagEn = btn.querySelector('[data-tag="en"]');
+    function apply(lang){
+      root.setAttribute('data-lang', lang);
+      root.setAttribute('lang', lang);
+      tagJa.className = lang === 'ja' ? 'cur' : '';
+      tagEn.className = lang === 'en' ? 'cur' : '';
+      try{ localStorage.setItem('hy-lang', lang); }catch(e){}
+    }
+    var saved = 'ja';
+    try{ saved = localStorage.getItem('hy-lang') || 'ja'; }catch(e){}
+    apply(saved);
+    btn.addEventListener('click', function(){
+      apply(root.getAttribute('data-lang') === 'ja' ? 'en' : 'ja');
+    });
+  })();
+</script>
 
 </body>
 </html>
