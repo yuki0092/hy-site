@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hystudio21.com/sitemap.xml

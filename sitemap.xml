@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://hystudio21.com/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://hystudio21.com/cases/ios-codemagic.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hystudio21.com/cases/android-permissions.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hystudio21.com/cases/firestore-rules.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hystudio21.com/legal/tokushoho.html</loc>
+    <lastmod>2026-08-22</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>

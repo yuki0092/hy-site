@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ルールが参照するドキュメントは、書き込み順序を決める | HY Studio</title>
-<meta name="description" content="Firestore のセキュリティルールで exists() を使うと、そのドキュメントは他と並列に扱えなくなる。作成は最初、削除は最後。PERMISSION_DENIED が出るのにルールは正しい、という状況の原因。">
+<meta name="description" content="Firestore のセキュリティルールで exists() を使うと、そのドキュメントは並列に扱えなくなる。PERMISSION_DENIED が出るのにルールは正しい、という状況の原因と直し方。">
+<link rel="canonical" href="https://hystudio21.com/cases/firestore-rules.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ルールが参照するドキュメントは、書き込み順序を決める | HY Studio">
+<meta property="og:description" content="Firestore のセキュリティルールで exists() を使うと、そのドキュメントは並列に扱えなくなる。PERMISSION_DENIED が出るのにルールは正しい、という状況の原因と直し方。">
+<meta property="og:url" content="https://hystudio21.com/cases/firestore-rules.html">
+<meta property="og:site_name" content="HY Studio">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
 <style>
   :root{ --ink:#1a1a1a; --muted:#666; --line:#e2dceb; --page:#fff; --accent:#7C3FA0; --card:#f7f4fb; }
   @media (prefers-color-scheme:dark){
