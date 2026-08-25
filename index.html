@@ -85,6 +85,14 @@
     font-family:var(--display); font-weight:600; font-size:15px; letter-spacing:.01em; color:var(--ink);
   }
   .wordmark b{color:var(--accent); font-weight:600}
+  .brand{display:flex; align-items:center; gap:11px}
+  .xlink{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:19px; height:19px; color:var(--ink-2); transition:color .15s;
+  }
+  .xlink svg{width:14px; height:14px; display:block}
+  .xlink:hover{color:var(--ink)}
+  .xlink:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px}
 
   .langtoggle{
     font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink-2);
@@ -192,7 +200,12 @@
 <body>
   <div class="page">
     <header>
-      <div class="wordmark">HY <b>Studio</b></div>
+      <div class="brand">
+        <div class="wordmark">HY <b>Studio</b></div>
+        <a class="xlink" href="https://x.com/Yuki_hystudio" target="_blank" rel="noopener" aria-label="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
       <button class="langtoggle" id="langBtn" type="button" aria-label="Switch language">
         <span class="cur" data-tag="ja">JA</span><span class="sep">/</span><span data-tag="en">EN</span>
       </button>
