@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<title>法人登記のない個人事業主が、Apple の組織アカウントへ移行するまで | HY Studio</title>
+<meta name="description" content="自力の申請では「個人事業主は個人として登録してください」で弾かれた。サポート経由の移行と、存在しない書類（雇用証明書・法人登記簿）を求められてからの24日間の記録。実際の画面つき。">
+<link rel="canonical" href="https://hystudio21.com/cases/apple-org-migration.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="法人登記のない個人事業主が、Apple の組織アカウントへ移行するまで | HY Studio">
+<meta property="og:description" content="自力の申請では弾かれた。サポート経由の移行と、存在しない書類を求められてからの24日間の記録。">
+<meta property="og:url" content="https://hystudio21.com/cases/apple-org-migration.html">
+<meta property="og:site_name" content="HY Studio">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  [data-lang="ja"] .en{display:none}
+  [data-lang="en"] .ja{display:none}
+  .sitetop{
+    max-width:760px;margin:0 auto;padding:22px 0 0;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    font-family:var(--body);
+  }
+  .sitetop a{font-size:13.5px;color:var(--accent);text-decoration:none}
+  .sitetop a:hover{text-decoration:underline}
+  .langtoggle{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    background:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+    color:var(--ink-3);cursor:pointer;flex:none;
+  }
+  .langtoggle:hover{color:var(--accent);border-color:var(--accent)}
+  .langtoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .langtoggle .cur{color:var(--ink)}
+  .langtoggle .sep{opacity:.4}
+  .backline{
+    max-width:760px;margin:44px auto 0;padding-top:20px;
+    border-top:1px solid var(--line);font-size:13.5px;font-family:var(--body);
+    display:flex;gap:18px;align-items:baseline;justify-content:space-between;
+  }
+  .backline .free{color:var(--ink-3)}
+  .backline a{color:var(--accent);text-decoration:none}
+  .backline a:hover{text-decoration:underline}
+
+  :root{
+    color-scheme:light;
+    --ink:#1a1c22;
+    --ink-2:#3d4350;
+    --ink-3:#727984;
+    --bg:#ffffff;
+    --panel:#fafbfc;
+    --line:#e4e7ec;
+    --line-2:#f0f2f5;
+    --stop:#c0492a;
+    --stop-bg:#fdf4f1;
+    --go:#1c7355;
+    --go-bg:#eef7f3;
+    --shot-bg:#f7f9fb;
+    --display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",Meiryo,system-ui,sans-serif;
+    --body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",Meiryo,system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+    --accent:#7C3FA0;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:var(--body);font-size:16px;line-height:1.95;
+    -webkit-font-smoothing:antialiased;
+    padding:0 20px 80px;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+
+  header{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+  .eyebrow{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+    color:var(--ink-3);text-transform:uppercase;margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(27px,5vw,38px);line-height:1.45;
+    letter-spacing:-.01em;text-wrap:balance;margin-bottom:20px;
+  }
+  .lead{font-size:16.5px;color:var(--ink-2);line-height:1.9;text-wrap:pretty}
+  .lead strong{color:var(--ink);font-weight:700}
+
+  .facts{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);
+    margin-top:34px;border-radius:3px;overflow:hidden;
+  }
+  .fact{background:var(--panel);padding:14px 16px}
+  .fact dt{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+    color:var(--ink-3);text-transform:uppercase;margin-bottom:5px;
+  }
+  .fact dd{font-size:14px;font-weight:500;line-height:1.6;color:var(--ink)}
+
+  h2{
+    font-family:var(--display);font-weight:700;font-size:20.5px;line-height:1.55;
+    letter-spacing:-.005em;margin:0 0 6px;text-wrap:balance;
+  }
+  p{margin:0 0 18px;text-wrap:pretty}
+  p:last-child{margin-bottom:0}
+  strong{font-weight:700}
+
+  /* 時系列 */
+  .steps{margin-top:8px}
+  .step{
+    display:grid;grid-template-columns:76px 1fr;gap:0 26px;
+    padding:38px 0;border-bottom:1px solid var(--line-2);
+  }
+  .step:last-child{border-bottom:none}
+  .date{
+    font-family:var(--mono);font-size:12px;line-height:1.55;
+    color:var(--ink-3);padding-top:6px;letter-spacing:.02em;
+  }
+  .date b{display:block;color:var(--ink-2);font-weight:500;font-size:15px}
+  .body-col{min-width:0}
+
+  .tag{
+    display:inline-block;font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 9px;border-radius:2px;margin-bottom:11px;
+  }
+  .tag.stop{color:var(--stop);background:#fbeae5}
+  .tag.go{color:var(--go);background:#e7f4ee}
+
+  /* 画面キャプチャ */
+  figure{margin:22px 0 0}
+  .shot{
+    background:var(--shot-bg);border:1px solid var(--line);
+    border-radius:8px;overflow:hidden;padding:10px;
+    box-shadow:0 1px 3px rgba(20,25,40,.05);
+  }
+  .shot img{display:block;width:100%;height:auto;border-radius:3px}
+  figcaption{
+    font-size:12.5px;color:var(--ink-3);line-height:1.7;
+    margin-top:9px;padding-left:1px;
+  }
+
+  /* 引用（Apple の文面） */
+  blockquote{
+    border-left:3px solid #d8dde5;
+    padding:2px 0 2px 18px;margin:20px 0;
+    font-size:15px;color:var(--ink-2);line-height:1.9;
+  }
+  blockquote strong{color:var(--ink)}
+  .who{
+    display:block;font-family:var(--mono);font-size:11px;
+    letter-spacing:.06em;color:var(--ink-3);margin-top:9px;
+  }
+
+  /* 山場の段を沈める */
+  .step.pivot .body-col{
+    background:var(--stop-bg);border:1px solid color-mix(in srgb,var(--stop) 22%,transparent);
+    border-radius:4px;padding:24px 26px;
+  }
+  @media (max-width:640px){
+    .step{grid-template-columns:1fr;gap:0}
+    .date{padding:0 0 12px}
+    .date b{display:inline;font-size:14px}
+    .date span{margin-left:8px}
+    .step.pivot .body-col{padding:20px 18px}
+  }
+
+  /* まとめ */
+  .takeaway{
+    border:1px solid var(--line);border-radius:4px;background:var(--panel);
+    padding:30px 32px;margin-top:44px;
+  }
+  .takeaway h2{margin-bottom:16px}
+  .takeaway ol{list-style:none;counter-reset:t;display:flex;flex-direction:column;gap:18px}
+  .takeaway li{counter-increment:t;position:relative;padding-left:36px;font-size:15.5px;line-height:1.9}
+  .takeaway li::before{
+    content:counter(t);position:absolute;left:0;top:5px;
+    width:23px;height:23px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--ink);color:var(--bg);
+    font-family:var(--mono);font-size:11px;font-weight:500;
+  }
+
+  ul.cond{list-style:none;margin:18px 0;padding:0;display:flex;flex-direction:column;gap:13px}
+  ul.cond li{position:relative;padding-left:20px;font-size:15.5px;line-height:1.85}
+  ul.cond li::before{content:"";position:absolute;left:2px;top:12px;width:5px;height:5px;border-radius:50%;background:var(--ink-3)}
+  .mono-inline{font-family:var(--mono);font-size:13px;background:var(--line-2);padding:1px 5px;border-radius:2px;word-break:break-word}
+  .note{
+    font-size:13px;color:var(--ink-3);line-height:1.85;
+    border-top:1px solid var(--line);margin-top:44px;padding-top:22px;
+  }
+  @media (max-width:640px){
+    body{font-size:15.5px;padding:0 16px 60px}
+    header{padding:44px 0 32px}
+    .takeaway{padding:24px 20px}
+  }
+
+</style>
+</head>
+<body>
+
+<div class="sitetop">
+  <a href="/">← HY Studio</a>
+  <button class="langtoggle" id="langBtn" type="button" aria-label="Switch language">
+    <span class="cur" data-tag="ja">JA</span><span class="sep">/</span><span data-tag="en">EN</span>
+  </button>
+</div>
+
+<div class="wrap ja">
+  <header>
+    <div class="eyebrow">記録 / Apple Developer Program</div>
+    <h1>法人登記のない個人事業主が、<br>Apple の組織アカウントへ移行するまで</h1>
+    <p class="lead">「個人事業主は法人アカウントを取れない」——<strong>自分で申請する限り、これは正しい。</strong>実際に一度弾かれ、一度は諦めた。だが<strong>サポートを通した移行では、結果が違った。</strong>途中、存在しない書類（雇用証明書と法人登記簿）を求められてもう一度詰まりかけたが、<strong>24日で屋号名義への移行が完了した。追加の費用はかからなかった。</strong>実際の画面とともに、経緯をすべて残しておく。</p>
+    <dl class="facts">
+      <div class="fact"><dt>事業形態</dt><dd>個人事業主<br>（法人登記なし）</dd></div>
+      <div class="fact"><dt>かかった日数</dt><dd>24日<br>（移行完了まで）</dd></div>
+      <div class="fact"><dt>追加の費用</dt><dd>なし<br>（期間を引き継ぎ）</dd></div>
+      <div class="fact"><dt>結果</dt><dd>屋号名義へ<br>移行完了</dd></div>
+    </dl>
+  </header>
+
+  <div class="steps">
+
+      <article class="step">
+        <div class="date"><b>8/24</b><span>1日目</span></div>
+        <div class="body-col">
+          <span class="tag stop">自力では通らず</span>
+          <h2>法人アカウントで加入しようとして、弾かれた</h2>
+          <p>Apple Developer Program には <strong>Individual（個人）</strong> と <strong>Organization（法人）</strong> の2種類がある。屋号でアプリを出したいので後者を選んだ。</p>
+<p>D-U-N-S 番号は取得済みで、Apple の画面もその番号自体は認識した。それでも先へ進めない。<strong>D&amp;B 上の事業形態が法人ではない</strong>ためで、画面には「個人事業主は個人として登録してください」と出た。</p>
+<p>この日は <strong>Individual で加入した</strong>。年額 12,980円。ここで一度、屋号での登録は諦めている。</p>
+          
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>8/27</b><span>4日目</span></div>
+        <div class="body-col">
+          
+          <h2>サポートに相談したら、質問が返ってきた</h2>
+          <p>Apple のデベロッパサポートへ「個人アカウントから法人アカウントへ移行したい」と問い合わせた。門前払いされるかと思ったが、返ってきたのは質問1点だけだった。</p>
+<blockquote>個人アカウントから法人アカウントへ移行されたい、とのお問い合わせを承りました。喜んでサポートさせていただきます。<br>——貴殿は貴社の創立者または共同創立者ですか。<span class="who">Apple デベロッパサポート</span></blockquote>
+<p>同日、<strong>「個人事業なので共同創立者はおらず、単独の創立者である」</strong>と回答した。あわせて提出できる書類も伝えた——開業届、D-U-N-S の登録情報、独自ドメインのサイトとメールアドレス。<strong>この時点で、こちらが個人事業主であることは伝わっている。</strong></p>
+          
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>8/31</b><span>8日目</span></div>
+        <div class="body-col">
+          
+          <h2>示されたのは6項目。うち2つは「失うもの」だった</h2>
+          <p>Apple から「移行の手続きを始める前に」として6項目が示され、準備が整えば返信を、と案内があった。<strong>条件というより、承知しておくべき事項という性格のものである。</strong></p>
+<ul class="cond">
+  <li><strong>2ファクタ認証が有効であること。</strong>——有効だった。</li>
+  <li><strong>事業に紐づく有効な Web サイトとドメインがあること。</strong>——サイトを公開済みで、登録メールも同じドメインのものを使っていた。</li>
+  <li><strong>移行中は「Certificates, Identifiers &amp; Profiles」が使えなくなる。</strong>証明書もプロファイルも触れない。App Store Connect のほうは使える。</li>
+  <li><strong>移行が完了すると、組織名が配布するすべてのアプリに適用される。</strong></li>
+  <li><strong>個人時代の「売上とトレンド」が見られなくなる。</strong></li>
+  <li><strong>移行前の収益は、移行開始時点の銀行口座へ支払われる。</strong></li>
+</ul>
+<p>後半3つは<strong>取り戻せない類のもの</strong>だが、こちらは App Store でまだ1本も公開しておらず収益もゼロだったため、実害はないと判断した。<strong>すでに売上のあるアカウントなら、ここは慎重に読む場面だと思う。</strong></p>
+<p>3番目については、影響を受ける作業がないことを先に確かめた。<strong>——ただしこの見積もりは、後日ひとつ外れることになる。</strong></p>
+          
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/2</b><span>10日目</span></div>
+        <div class="body-col">
+          <span class="tag go">手続き開始</span>
+          <h2>Apple が手続きを開始した</h2>
+          <p>担当者から「早速手続きを進めさせていただきました」と連絡があり、システムからも登録用のメールが届いた。アカウントの画面にも移行の案内が出る。</p>
+          <figure><div class="shot"><img src="/cases/apple-org/01-migration-requested.png" alt=""></div><figcaption>アカウント画面に出た移行の案内。この時点で、証明書やプロファイルの画面は使えなくなる。</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/2</b><span>同日</span></div>
+        <div class="body-col">
+          
+          <h2>組織情報の入力画面へ進む</h2>
+          <p>案内のリンクから、法人名と D-U-N-S 番号を入力する画面に入った。</p>
+<p>画面の右側には注意書きがある。<strong>「法人として登録されていない個人事業主の場合は、正式な個人名で登録される」</strong>——8月24日に弾かれたときと同じ条件が、ここにも書かれている。</p>
+          <figure><div class="shot"><img src="/cases/apple-org/02-org-form.png" alt=""></div><figcaption>組織情報の入力画面。右の説明に、法人登記が必要という条件が書かれている。</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step pivot">
+        <div class="date"><b>9/2</b><span>同日</span></div>
+        <div class="body-col">
+          <span class="tag stop">ここで詰まった</span>
+          <h2>8月24日と、まったく同じ理由で止まった</h2>
+          <p>入力した値は D&amp;B の登録と一致している。打ち間違いではない。<strong>番号は認識されたうえで「法人ではない」と判定された。</strong></p>
+<p>サポートが手続きを開始してくれたのに、その手続きの中で同じ壁に当たった。<strong>ここで「やはり法人化しないと無理だ」と判断して引き返すこともできた。</strong></p>
+          <figure><div class="shot"><img src="/cases/apple-org/03-rejected.png" alt=""></div><figcaption>表示されたエラー。文面は実際のものを再現している（番号は伏せた）。</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/2</b><span>同日</span></div>
+        <div class="body-col">
+          
+          <h2>引き返さず、経緯を添えて聞き直した</h2>
+          <p>送ったのは「エラーが出たので教えてほしい」ではなく、<strong>これまでの経緯を時系列で並べた文面</strong>だった。要点は一つ。</p>
+<blockquote><strong>8月27日の時点で、個人事業であることはお伝えしています。</strong>それを踏まえて移行手続きを開始していただいたものと理解しております。その手続きの中で「法人であることを確認できない」という理由で止まるのであれば、<strong>8月27日の時点でお知らせいただけていれば、移行を依頼することはございませんでした。</strong></blockquote>
+<p>責める書き方はしていない。<strong>日付と、そのとき何を伝えたかを並べただけである。</strong>あわせて4点を質問した——個人事業主でも完了できるのか、できないなら Apple 側で対応できるのか、キャンセル扱いになるのか、いま止まっている間アカウントはどうなるのか。</p>
+          
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/4</b><span>12日目</span></div>
+        <div class="body-col">
+          <span class="tag go">調整が入った</span>
+          <h2>Apple 側で調整が入った</h2>
+          <p>2日後、担当者から返信が届いた。</p>
+<blockquote>貴社の D-U-N-S 情報を確認させていただきました。<strong>登録を続けていただけるよう調整を行いましたので</strong>、Apple Developer Web サイトにサインインし、必要な情報を入力してください。<span class="who">Apple デベロッパサポート</span></blockquote>
+<p><strong>法人登記は、この2日間で何も変わっていない。</strong>変わったのは Apple 側の扱いだけである。</p>
+          <figure><div class="shot"><img src="/cases/apple-org/04-mail-recheck.png" alt=""></div><figcaption>再入力を案内するメール。同じ内容がシステムからも届いた。</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/4</b><span>同日</span></div>
+        <div class="body-col">
+          
+          <h2>同じ画面が、今度は通った</h2>
+          <p>入力し直すと、<strong>法人名と D-U-N-S 番号は確定済みとして表示され、編集できない状態になっていた。</strong>先へ進み、住所・サイト・電話番号を入力する。</p>
+<p>住所は D&amp;B の登録と一致させる必要がある。1行で登録されているものを、画面の欄に合わせて分解して入れた。</p>
+          <figure><div class="shot"><img src="/cases/apple-org/05-supplementary.png" alt=""></div><figcaption>補足情報の画面。上2つは確定済みで編集できない。ここを越えられた。</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/4</b><span>同日</span></div>
+        <div class="body-col">
+          
+          <h2>申請が受理された</h2>
+          <p>登録処理に入り、申請の受理を知らせるメールが届いた。</p>
+          <figure><div class="shot"><img src="/cases/apple-org/06-processing.png" alt=""></div><figcaption>登録処理中の画面。ここで登録IDが発行される。</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/4</b><span>12日目</span></div>
+        <div class="body-col">
+          <span class="tag go">審査中</span>
+          <h2>ただし、受理は完了ではなかった</h2>
+          <blockquote>お客様の登録申請を受理いたしました。お客様が組織を代表して Apple Developer Program の法的な契約を交わす<strong>権限をお持ちであることが確認でき次第</strong>、登録の完了手順をメールにてご案内いたします。</blockquote>
+<p><strong>受理と承認は別である。</strong>この時点ではまだ名義は切り替わっていない。完了の案内が届くまで、App Store への審査提出は見送ることにした——途中で公開すると、個人名のまま世に出る可能性があるためである。</p>
+<p>ここで終わりだと思っていたが、<strong>5日後に、もう一度詰まることになる。</strong></p>
+          <figure><div class="shot"><img src="/cases/apple-org/07-accepted.png" alt=""></div><figcaption>受理の通知。ここから先は Apple 側の確認を待つ段階になる。</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/6</b><span>14日目</span></div>
+        <div class="body-col">
+          <span class="tag stop">3番目に当たった</span>
+          <h2>「影響はない」と見積もったところで、ビルドが止まった</h2>
+          <p>iOS のビルドを CI で回そうとしたところ、署名の段階で落ちた。</p>
+<blockquote><span class="mono-inline">Set up signing</span><br>GET api.appstoreconnect.apple.com ... returned 403: Unable to find a team with the given Team ID '……' to which you belong.</blockquote>
+<p>後続には「証明書が見つからない」というログも出ていたが、<strong>そちらは結果であって原因ではない。</strong>0行目で、証明書を探す前に Apple への問い合わせ自体が弾かれている。ブラウザから「Certificates, Identifiers &amp; Profiles」を開いても、同じ文面が出た。</p>
+<p><strong>移行中はこの画面が使えない——8月31日に読んだ3番目の項目そのものである。</strong>当時は「いま止まる作業はない」と見積もっていたが、この日ビルドを回す用事ができて当たった。</p>
+<p>CI の設定を疑って直しにかかると、いくらでも時間を溶かせる場面だった。<strong>エラーメッセージが指すもの（証明書）と、実際に足りないもの（アカウントの状態）が違う。</strong>先に読んでいた6項目のおかげで、原因の見当がついた。</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/9</b><span>17日目</span></div>
+        <div class="body-col">
+          <span class="tag stop">存在しない書類</span>
+          <h2>3点の書類を求められ、うち2点が存在しなかった</h2>
+          <p>受理から5日後、Apple から書類の提出を求められた。</p>
+<blockquote>ご本人確認およびご登録される法人との関係確認ができません。登録手続きを進めるために、以下の書類のコピーをご提出ください。<br>1. 申請者の政府機関発行の写真付き本人確認書類<br>2. 申請者の<strong>雇用証明書</strong><br>3. HY STUDIO に関する<strong>履歴事項全部証明書または登記事項証明書</strong><span class="who">Apple デベロッパサポート</span></blockquote>
+<p><strong>2と3は、個人事業主には存在しない。</strong>法人登記がないので登記簿は発行されず、雇用関係がないので雇用証明書もない。日本語の本文の中に、<span class="mono-inline">Official Certificate of the Corporation from the Company Register issued by the Ministry of Justice</span> ——法務省が発行する法人登記簿——という英語が、訳されないまま残っていた。</p>
+<p>ここで<strong>雇用証明書を自作するという選択肢は採らなかった。</strong>実体のない書面を作るより、存在しない理由を説明するほうが筋が通る。方針は2つ。<strong>出せる2点——本人確認書類としてマイナンバーカード、事業の実在を示すものとして開業届の控え——を提出し、出せない理由を注記に書く。そのうえで、担当者にもメールで説明する。</strong>同じことを二重に伝える形にした。</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/9</b><span>17日目</span></div>
+        <div class="body-col">
+          <h2>アップロードが3回失敗した。理由は表示されない</h2>
+          <p>提出先は専用のアップロードページで、メール添付ではない。ファイルごとに「注記」欄があり、書類と説明を一緒に届けられる。</p>
+          <figure><div class="shot"><img src="/cases/apple-org/08-upload-error.png" alt=""></div><figcaption>2件とも弾かれた状態。赤字は「リクエストの処理中に問題が発生しました」だけで、理由は書かれていない（氏名は伏せた）。</figcaption></figure>
+<p><strong>エラーは毎回この一文だけだった。</strong>潰した順に書いておく。</p>
+<p><strong>サイズは無関係だった。</strong>通らなかったファイルは 76KB で、上限 5MB の 1/65 である。形式も PDF で、画面下部に明記された条件（JPG・PNG・TIFF・PDF）を満たしていた。</p>
+<p><strong>当たったのは2つ。</strong>ひとつは<strong>ファイル名</strong>で、<span class="mono-inline">マイナンバー.JPG</span> と <span class="mono-inline">開業届+受信通知.pdf</span> は2件とも失敗した。半角英数の <span class="mono-inline">id.pdf</span> / <span class="mono-inline">kaigyo.pdf</span> に変えると、片方が通った。もうひとつは<strong>注記の文字数</strong>で、名前を変えても残っていた失敗は、注記を短くしたら通った。</p>
+<p><strong>結果として、出せない理由は注記に書ききれなかった。</strong>二重に伝えるつもりが、片方だけになっている。メールのほうで補った。</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/11</b><span>19日目</span></div>
+        <div class="body-col">
+          <span class="tag go">否認ではなかった</span>
+          <h2>返ってきたのは、否認ではなく確認だった</h2>
+          <p>提出の2日後、返信が届いた。</p>
+<blockquote>マイナンバーカードと開業届をご提供いただきましたが雇用証明書・在籍証明書はございませんでした。<strong>開業届を拝見すると〇〇様が代表者として記載されており、雇用証明書・在籍証明書等書類の発行は不可である / 発行されないとの理解でよろしいでしょうか。</strong><span class="who">Apple デベロッパサポート</span></blockquote>
+<p><strong>先方は開業届を読んでいた。</strong>そのうえで「代表者本人だから、雇用証明書は発行されない」という理解でよいかを確認してきている。9/9 の定型文とは、明らかに扱いが違う。</p>
+<p>同日、そのとおりである旨を返信した。<strong>聞かれていない登記簿についても、法人登記がないため発行されないことを併せて書いた。</strong>当初の3点のうち、まだ触れられていないものが残っていたためである。<strong>結果として、登記簿について再度問われることはなかった。</strong></p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/15</b><span>23日目</span></div>
+        <div class="body-col">
+          <span class="tag go">審査通過</span>
+          <h2>書類の確認が完了した</h2>
+          <blockquote>雇用証明書のご提出はできない理由をお知らせいただき、ありがとうございます。<strong>ご提出いただいた書類、及びご登録の確認が完了しましたのでご報告致します。</strong>契約メールが送信されておりますのでご確認下さい。<span class="who">Apple デベロッパサポート</span></blockquote>
+<p><strong>「出せない理由を説明する」という道は、実際に用意されていた。</strong>存在しない書類を求められたとき、詰んだと判断せずに事実を説明したことが、そのまま通った形になる。</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/16</b><span>24日目</span></div>
+        <div class="body-col">
+          <h2>最後の画面は「新規登録」ではなく「権利の譲渡」だった</h2>
+          <p>残る手続きは、使用許諾契約への同意とメンバーシップの購入。ここで画面の中身が予想と違った。</p>
+          <figure><div class="shot"><img src="/cases/apple-org/09-consent.png" alt=""></div><figcaption>同意画面。原題は Consent to Assignment of the Apple Developer Program License Agreement——使用許諾契約の「権利承継」への同意である。</figcaption></figure>
+<p><strong>これは新規登録ではない。</strong>譲渡人（個人）から譲受人（屋号）へ、既存の契約を引き継ぐ契約である。チェックボックスが2つあるのは、譲渡人と譲受人の両方の立場で同意するためで、同一人物が兼ねている場合は両方入れる。</p>
+<p>条項を読むと、あとで効くものが3つあった。<strong>ひとつは銀行・支払い・税務の情報で、名義が変わった以上、有料アプリを売るなら組織名義で登録し直す責任がこちらにある。</strong>もうひとつは<strong>メタデータと著作権表記で、こちらは「譲渡日から30日以内」と期限が明記されている。</strong>最後のひとつは、<strong>譲渡前に生じた責任は個人からも消えない</strong>という条項である。</p>
+<p>そして<strong>購入画面は出てこなかった。</strong>同意した時点で完了している。</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>9/16</b><span>24日目</span></div>
+        <div class="body-col">
+          <span class="tag go">完了</span>
+          <h2>屋号名義になった。追加の支払いはなかった</h2>
+          <figure><div class="shot"><img src="/cases/apple-org/10-membership.png" alt=""></div><figcaption>移行後のアカウント画面。登録タイプが「組織」に変わっている（チームID・電話番号・住所・氏名は伏せた）。</figcaption></figure>
+<p><strong>更新日は 2027年8月24日。</strong>個人として加入した 2026年8月24日のちょうど1年後である。<strong>既存の期間がそのまま引き継がれ、12,980円を二重に払うことにはならなかった。</strong>権利の譲渡だったのだから当然ではあるが、同意ボタンを押すまでは確証がなかった。</p>
+<p><strong>チームIDも変わっていない。</strong>9月6日に 403 で止まった CI は、<strong>設定を作り直さずそのまま回せることになる。</strong>同じチームが、名義だけ組織に切り替わった形である。</p>
+<p>個人として加入した日から数えて<strong>23日</strong>、移行を依頼した日からは<strong>14日</strong>だった。</p>
+        </div>
+      </article>
+  </div>
+
+  <section class="takeaway">
+    <h2>同じ状況の方へ</h2>
+    <ol>
+      <li><strong>「自分で申請して駄目だった」を、そのまま結論にしない。</strong>申請の経路が違えば、扱いも変わることがある。今回は自力の申請で弾かれ、サポート経由の移行では通った。</li>
+      <li><strong>存在しない書類を求められても、詰んだと判断しない。</strong>法人登記も雇用証明書も、個人事業主には存在しない。偽の書面を作る必要はなく、<strong>「なぜ出せないか」を説明したうえで、本人確認書類と開業届の控えを出して通った。</strong>どちらがどう効いたかまでは分からない。</li>
+      <li><strong>聞かれていないことも、同じ返信で片付ける。</strong>先方が触れたのは雇用証明書だけだったが、登記簿も出せないことを併せて書いた。<strong>その後、登記簿について再度問われることはなかった。</strong></li>
+      <li><strong>2回目の問い合わせでは、経緯を時系列で書いた。</strong>1回目はエラーの文面を伝えただけで、返ってきたのは「個人として登録してください」だった。2回目は日付を並べ、そのあとで調整が入っている。<strong>順序としてはそうだった、というだけで、因果は確かめていない。</strong></li>
+      <li><strong>書いたのは、日付と、そのとき何を伝えたかだけである。</strong>相手の不備を指摘する文言は入れていない。これが効いたかどうかは分からない——<strong>比べようがないので、そう書くしかない。</strong></li>
+      <li><strong>移行前に示される項目は、最後まで手元に置いておく。</strong>証明書の画面が使えなくなることは事前に案内されるが、それが CI の 403 という形で出てくるとは書かれていない。<strong>エラーメッセージが指すもの（証明書）と、実際に足りないもの（アカウントの状態）は一致しないことがある。</strong></li>
+      <li><strong>「いま影響がない」は「ずっと影響がない」ではない。</strong>着手予定のない作業でも、移行中に用事ができることはある。制約の期間がどれだけ続くかは、こちらでは決められない。</li>
+      <li><strong>最後の契約は「新規登録」ではなく「権利の譲渡」だった。</strong>だから既存の期間が引き継がれ、年額を二重に払うことにはならない。<strong>ただし条項には、譲渡後の税務情報の更新や、30日以内のメタデータ修正といった義務も書かれている。</strong>同意する前に読んでおく価値がある。</li>
+    </ol>
+  </section>
+
+  <p class="note">本記事は 2026年8月24日から9月16日までの記録である。画面もメールの文面も実際のものだが、<strong>D-U-N-S 番号・登録ID・チームID・電話番号・住所・氏名は伏せてある</strong>（引用文中の氏名は〇〇と置き換えた）。8月24日に自力で弾かれたときの画面と、9月2日のエラー画面は当時保存しておらず、後者は文面を正確に再現したものを掲載している。<br><strong>App Store 上の表示名が屋号に変わったかどうかは、本記事の時点でまだ確認していない。</strong><br>Apple の審査基準や運用は変わることがある。<strong>同じ手順で同じ結果になるとは限らない。</strong></p>
+</div>
+
+<div class="wrap en">
+  <header>
+    <div class="eyebrow">Case study / Apple Developer Program</div>
+    <h1>How a Japanese sole proprietor with no corporate registration<br>moved to an Apple organization account</h1>
+    <p class="lead">"A sole proprietor can't get an organization account" — <strong>as long as you apply on your own, that is correct.</strong> I was rejected once, and I gave up once. But <strong>going through support, the outcome was different.</strong> Midway I was asked for documents that don't exist for a sole proprietor (a certificate of employment and a corporate registry extract) and nearly stalled a second time, yet <strong>the migration to my trade name completed in 24 days. It cost nothing extra.</strong> Here is the whole sequence, with the actual screens.</p>
+    <dl class="facts">
+      <div class="fact"><dt>Business form</dt><dd>Sole proprietor<br>(no corporate registration)</dd></div>
+      <div class="fact"><dt>Time taken</dt><dd>24 days<br>(to completion)</dd></div>
+      <div class="fact"><dt>Extra cost</dt><dd>None<br>(term carried over)</dd></div>
+      <div class="fact"><dt>Outcome</dt><dd>Migrated to<br>the trade name</dd></div>
+    </dl>
+  </header>
+
+  <div class="steps">
+
+      <article class="step">
+        <div class="date"><b>Aug 24</b><span>Day 1</span></div>
+        <div class="body-col">
+          <span class="tag stop">Rejected on my own</span>
+          <h2>I tried to enroll as an organization, and was turned away</h2>
+          <p>The Apple Developer Program comes in two types, <strong>Individual</strong> and <strong>Organization</strong>. I wanted to ship apps under my trade name, so I chose the latter.</p>
+<p>I already had a D-U-N-S number, and Apple's form did recognize the number itself. Even so, I couldn't proceed. The reason was that <strong>my legal form on the D&amp;B record is not a corporation</strong>, and the screen told me that sole proprietors must register as individuals.</p>
+<p>That day I <strong>enrolled as an Individual</strong> instead. ¥12,980 per year. At that point I had given up on registering under the trade name.</p>
+
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Aug 27</b><span>Day 4</span></div>
+        <div class="body-col">
+
+          <h2>I asked support, and got a question back</h2>
+          <p>I contacted Apple Developer Support saying I wanted to move from an individual account to an organization account. I expected to be turned away at the door; instead, all that came back was a single question.</p>
+<blockquote>We have received your inquiry regarding moving from an individual account to an organization account. We would be happy to assist you.<br>— Are you the founder or a co-founder of your company?<span class="who">Apple Developer Support</span></blockquote>
+<p>The same day I replied that <strong>as a sole proprietorship there are no co-founders, and I am the sole founder.</strong> I also listed the documents I could provide — my notification of business commencement (kaigyo todoke, the filing that registers a sole proprietorship with the tax office), my D-U-N-S registration details, and a website and email address on my own domain. <strong>At this point, the fact that I was a sole proprietor had been communicated.</strong></p>
+
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Aug 31</b><span>Day 8</span></div>
+        <div class="body-col">
+
+          <h2>Six items were laid out. Two of them were things I would lose</h2>
+          <p>Apple sent six items headed "before we begin the migration," asking me to reply once I was ready. <strong>They read less like conditions than like things to be aware of.</strong></p>
+<ul class="cond">
+  <li><strong>Two-factor authentication must be enabled.</strong> — It was.</li>
+  <li><strong>You must have a working website and domain tied to the business.</strong> — The site was already live, and my registered email was on the same domain.</li>
+  <li><strong>During the migration, "Certificates, Identifiers &amp; Profiles" becomes unavailable.</strong> No access to certificates or profiles. App Store Connect still works.</li>
+  <li><strong>Once the migration completes, the organization name applies to every app you distribute.</strong></li>
+  <li><strong>Sales and Trends data from the individual period will no longer be viewable.</strong></li>
+  <li><strong>Revenue earned before the migration is paid to the bank account on file when the migration starts.</strong></li>
+</ul>
+<p>The last three are <strong>the kind you can't get back</strong>, but I hadn't published a single app on the App Store yet and my revenue was zero, so I judged there was no real harm. <strong>If your account already has sales, this is the part to read carefully.</strong></p>
+<p>For the third item, I checked first that no work of mine would be affected. <strong>— That estimate, however, turned out to be wrong a few days later.</strong></p>
+
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 2</b><span>Day 10</span></div>
+        <div class="body-col">
+          <span class="tag go">Process started</span>
+          <h2>Apple started the process</h2>
+          <p>The representative wrote that they had gone ahead and started the process, and a registration email arrived from the system as well. A migration notice also appeared on the account page.</p>
+          <figure><div class="shot"><img src="/cases/apple-org/01-migration-requested.png" alt=""></div><figcaption>The migration notice on the account page. From this point, the certificates and profiles screens become unavailable.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 2</b><span>Same day</span></div>
+        <div class="body-col">
+
+          <h2>On to the organization details form</h2>
+          <p>The link in the notice led to a form for entering the legal entity name and D-U-N-S number.</p>
+<p>There is a note on the right side of the screen: <strong>"If you are a sole proprietor not registered as a legal entity, you will be registered under your formal personal name."</strong> — the same condition that blocked me on August 24, written right here as well.</p>
+          <figure><div class="shot"><img src="/cases/apple-org/02-org-form.png" alt=""></div><figcaption>The organization details form. The explanation on the right states the requirement for corporate registration.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step pivot">
+        <div class="date"><b>Sep 2</b><span>Same day</span></div>
+        <div class="body-col">
+          <span class="tag stop">Stalled here</span>
+          <h2>Stopped for exactly the same reason as August 24</h2>
+          <p>The values I entered match the D&amp;B record. It was not a typo. <strong>The number was recognized, and then judged "not a legal entity."</strong></p>
+<p>Support had started the process for me, and inside that very process I hit the same wall. <strong>This was a point where I could have concluded that incorporation really was required, and turned back.</strong></p>
+          <figure><div class="shot"><img src="/cases/apple-org/03-rejected.png" alt=""></div><figcaption>The error that appeared. The wording reproduces the real one (the number is redacted).</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 2</b><span>Same day</span></div>
+        <div class="body-col">
+
+          <h2>Instead of turning back, I asked again with the history attached</h2>
+          <p>What I sent was not "I got an error, please explain." It was <strong>a message laying out the history in chronological order</strong>. It came down to one point.</p>
+<blockquote><strong>As of August 27, I had already told you that this is a sole proprietorship.</strong> My understanding is that the migration was started on that basis. If the process then stops because you cannot confirm that I am a legal entity, <strong>had I been told so on August 27, I would not have requested the migration at all.</strong></blockquote>
+<p>Nothing in it was written to assign blame. <strong>It was only dates, and what I had said on each of them.</strong> Alongside that I asked four questions — whether a sole proprietor can complete this at all, whether Apple can do something on their side if not, whether it would be treated as a cancellation, and what happens to the account while it sits stalled.</p>
+
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 4</b><span>Day 12</span></div>
+        <div class="body-col">
+          <span class="tag go">Adjusted on Apple's side</span>
+          <h2>Apple made an adjustment</h2>
+          <p>Two days later, a reply arrived from the representative.</p>
+<blockquote>We have reviewed your company's D-U-N-S information. <strong>We have made an adjustment so that you can continue with the registration</strong>, so please sign in to the Apple Developer website and enter the required information.<span class="who">Apple Developer Support</span></blockquote>
+<p><strong>Nothing about my corporate registration changed in those two days.</strong> What changed was only how Apple handled it.</p>
+          <figure><div class="shot"><img src="/cases/apple-org/04-mail-recheck.png" alt=""></div><figcaption>The email asking me to re-enter the details. The same content also arrived from the system.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 4</b><span>Same day</span></div>
+        <div class="body-col">
+
+          <h2>The same screen, and this time it went through</h2>
+          <p>When I entered the details again, <strong>the entity name and D-U-N-S number were shown as already confirmed and could no longer be edited.</strong> I moved on and entered the address, website, and phone number.</p>
+<p>The address has to match the D&amp;B record. Mine is registered there as a single line, so I split it up to fit the form's fields.</p>
+          <figure><div class="shot"><img src="/cases/apple-org/05-supplementary.png" alt=""></div><figcaption>The supplementary information screen. The top two fields are locked. This is the point I got past.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 4</b><span>Same day</span></div>
+        <div class="body-col">
+
+          <h2>The application was accepted</h2>
+          <p>Registration processing began, and an email confirming receipt of the application arrived.</p>
+          <figure><div class="shot"><img src="/cases/apple-org/06-processing.png" alt=""></div><figcaption>The registration-in-progress screen. An enrollment ID is issued here.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 4</b><span>Day 12</span></div>
+        <div class="body-col">
+          <span class="tag go">Under review</span>
+          <h2>Accepted, however, was not the same as complete</h2>
+          <blockquote>We have received your enrollment application. <strong>Once we can confirm that you have the authority</strong> to enter into the Apple Developer Program legal agreements on behalf of your organization, we will email you the steps to complete your enrollment.</blockquote>
+<p><strong>Acceptance and approval are different things.</strong> At this point the account name had not switched over yet. I decided to hold off submitting anything to App Store review until the completion notice arrived — publishing in the middle could put an app into the world under my personal name.</p>
+<p>I thought that was the end of it, but <strong>five days later I would stall once more.</strong></p>
+          <figure><div class="shot"><img src="/cases/apple-org/07-accepted.png" alt=""></div><figcaption>The acceptance notice. From here it becomes a matter of waiting on Apple's verification.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 6</b><span>Day 14</span></div>
+        <div class="body-col">
+          <span class="tag stop">The third item hit</span>
+          <h2>The build broke exactly where I had estimated "no impact"</h2>
+          <p>I went to run an iOS build in CI, and it failed at the signing stage.</p>
+<blockquote><span class="mono-inline">Set up signing</span><br>GET api.appstoreconnect.apple.com ... returned 403: Unable to find a team with the given Team ID '……' to which you belong.</blockquote>
+<p>Further down the log there was also a "certificate not found" message, but <strong>that is a consequence, not the cause.</strong> On line zero, the request to Apple itself is rejected before any certificate is looked for. Opening "Certificates, Identifiers &amp; Profiles" in a browser produced the same message.</p>
+<p><strong>This screen is unavailable during the migration — precisely the third item I had read on August 31.</strong> At the time I estimated that no work of mine would be blocked, and then on this day I had a reason to run a build, and hit it.</p>
+<p>This is the kind of situation where you can burn any amount of time suspecting and "fixing" your CI configuration. <strong>What the error message points at (a certificate) and what is actually missing (the state of the account) are not the same thing.</strong> Having read those six items beforehand is what gave me the cause.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 9</b><span>Day 17</span></div>
+        <div class="body-col">
+          <span class="tag stop">Documents that don't exist</span>
+          <h2>Three documents were requested, and two of them did not exist</h2>
+          <p>Five days after acceptance, Apple asked me to submit documents.</p>
+<blockquote>We are unable to verify your identity and your relationship to the entity being registered. To proceed with the registration, please submit copies of the following documents.<br>1. The applicant's government-issued photo identification<br>2. The applicant's <strong>certificate of employment</strong><br>3. A <strong>certificate of corporate registration (full historical record or current record) issued by the Legal Affairs Bureau</strong> for HY STUDIO<span class="who">Apple Developer Support</span></blockquote>
+<p><strong>Items 2 and 3 do not exist for a sole proprietor.</strong> With no corporate registration, no registry extract is issued; with no employment relationship, there is no certificate of employment. Embedded in the otherwise Japanese message, one phrase had been left untranslated: <span class="mono-inline">Official Certificate of the Corporation from the Company Register issued by the Ministry of Justice</span> — a corporate registry extract issued by the Ministry of Justice.</p>
+<p>I <strong>did not take the option of writing my own certificate of employment.</strong> Explaining why a document doesn't exist is more defensible than manufacturing a piece of paper with nothing behind it. The plan had two parts. <strong>Submit the two things I do have — My Number Card (Japan's national ID card) as photo identification, and my stamped copy of the notification of business commencement as evidence that the business exists — and write the reasons the others can't be produced in the notes field. Then explain the same thing to the representative by email.</strong> The same message delivered twice.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 9</b><span>Day 17</span></div>
+        <div class="body-col">
+          <h2>The upload failed three times. No reason is displayed</h2>
+          <p>Submission goes through a dedicated upload page, not email attachments. Each file has a "notes" field, so the document and its explanation travel together.</p>
+          <figure><div class="shot"><img src="/cases/apple-org/08-upload-error.png" alt=""></div><figcaption>Both files rejected. The text in red says only "There was a problem processing your request" — no reason given (name redacted).</figcaption></figure>
+<p><strong>Every failure produced that one sentence and nothing else.</strong> Here is what I ruled out, in order.</p>
+<p><strong>Size was irrelevant.</strong> The file that failed was 76KB, one sixty-fifth of the 5MB limit. The format was PDF, which meets the conditions stated at the bottom of the page (JPG, PNG, TIFF, PDF).</p>
+<p><strong>Two things did matter.</strong> One was <strong>the file name</strong>: <span class="mono-inline">マイナンバー.JPG</span> and <span class="mono-inline">開業届+受信通知.pdf</span> both failed. Renaming them to ASCII — <span class="mono-inline">id.pdf</span> and <span class="mono-inline">kaigyo.pdf</span> — got one of them through. The other was <strong>the length of the notes field</strong>: the one that still failed after renaming went through once I shortened the note.</p>
+<p><strong>As a result, the reasons the documents can't be produced did not fit in the notes field.</strong> What was meant to be delivered twice ended up delivered once. I made up for it in the email.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 11</b><span>Day 19</span></div>
+        <div class="body-col">
+          <span class="tag go">Not a rejection</span>
+          <h2>What came back was not a rejection, but a question</h2>
+          <p>Two days after submitting, a reply arrived.</p>
+<blockquote>You provided your My Number Card and your notification of business commencement, but no certificate of employment or certificate of enrollment was included. <strong>Looking at the notification of business commencement, [redacted] is listed as the representative; may we understand that a certificate of employment or certificate of enrollment cannot be issued / is not issued in your case?</strong><span class="who">Apple Developer Support</span></blockquote>
+<p><strong>They had read the notification of business commencement.</strong> Having read it, they were checking whether the correct understanding is that no certificate of employment is issued because the applicant is the representative. That is a visibly different treatment from the boilerplate of September 9.</p>
+<p>The same day I replied confirming that this was correct. <strong>I also wrote, unprompted, that the registry extract is likewise not issued because there is no corporate registration.</strong> Of the three original documents, that one had not yet been touched on. <strong>As it turned out, the registry extract was never raised again.</strong></p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 15</b><span>Day 23</span></div>
+        <div class="body-col">
+          <span class="tag go">Verification passed</span>
+          <h2>Document verification completed</h2>
+          <blockquote>Thank you for letting us know the reason the certificate of employment cannot be provided. <strong>We are pleased to report that verification of the documents you submitted and of your registration is now complete.</strong> The agreement email has been sent, so please check for it.<span class="who">Apple Developer Support</span></blockquote>
+<p><strong>The route of "explain why you can't provide it" really was available.</strong> When asked for documents that don't exist, not treating it as a dead end and simply explaining the facts is what carried it through.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 16</b><span>Day 24</span></div>
+        <div class="body-col">
+          <h2>The final screen was not "new enrollment" but "assignment of rights"</h2>
+          <p>All that remained was agreeing to the license agreement and purchasing the membership. Here the screen turned out to contain something other than what I expected.</p>
+          <figure><div class="shot"><img src="/cases/apple-org/09-consent.png" alt=""></div><figcaption>The consent screen. Its actual title is Consent to Assignment of the Apple Developer Program License Agreement — consent to the assignment of the license agreement.</figcaption></figure>
+<p><strong>This is not a new enrollment.</strong> It is an agreement carrying the existing contract over from the assignor (the individual) to the assignee (the trade name). There are two checkboxes because you consent in both capacities, assignor and assignee; when the same person is both, you tick both.</p>
+<p>Reading the clauses, three of them bite later. <strong>One is banking, payment, and tax information: now that the account name has changed, the responsibility to re-register these under the organization is mine if I want to sell paid apps.</strong> Another is <strong>metadata and copyright notices, and this one carries an explicit deadline — within 30 days of the assignment date.</strong> The last is the clause stating that <strong>liabilities arising before the assignment do not disappear from the individual either.</strong></p>
+<p>And <strong>the purchase screen never appeared.</strong> Consenting completed the process.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="date"><b>Sep 16</b><span>Day 24</span></div>
+        <div class="body-col">
+          <span class="tag go">Complete</span>
+          <h2>It's under the trade name now. There was no additional payment</h2>
+          <figure><div class="shot"><img src="/cases/apple-org/10-membership.png" alt=""></div><figcaption>The account page after migration. The entity type has changed to "Organization" (Team ID, phone number, address, and name redacted).</figcaption></figure>
+<p><strong>The renewal date is August 24, 2027.</strong> Exactly one year after August 24, 2026, when I enrolled as an individual. <strong>The existing term carried straight over, and I did not end up paying ¥12,980 twice.</strong> Given that this was an assignment of rights, that follows — but I had no proof of it until I pressed the consent button.</p>
+<p><strong>The Team ID didn't change either.</strong> The CI that stopped with a 403 on September 6 <strong>can be run again as-is, with no configuration rebuilt.</strong> It is the same team, with only the name switched to the organization.</p>
+<p>Counting from the day I enrolled as an individual, that was <strong>23 days</strong>; from the day I requested the migration, <strong>14 days</strong>.</p>
+        </div>
+      </article>
+  </div>
+
+  <section class="takeaway">
+    <h2>If you're in the same position</h2>
+    <ol>
+      <li><strong>Don't let "I applied myself and it failed" stand as the conclusion.</strong> A different route can get different handling. Here, the self-service application was rejected and the support-led migration went through.</li>
+      <li><strong>Being asked for documents that don't exist is not a dead end.</strong> Neither a corporate registry extract nor a certificate of employment exists for a sole proprietor. There was no need to fabricate anything: <strong>I explained why they can't be produced, submitted photo identification and my stamped copy of the notification of business commencement, and it went through.</strong> Which of those carried what weight, I don't know.</li>
+      <li><strong>Settle the things you weren't asked about in the same reply.</strong> They only brought up the certificate of employment, but I wrote that the registry extract couldn't be produced either. <strong>After that, the registry extract was never raised again.</strong></li>
+      <li><strong>On the second inquiry, I wrote the history in chronological order.</strong> The first time I only conveyed the text of the error, and what came back was "please register as an individual." The second time I laid out the dates, and the adjustment came after that. <strong>That is only the order in which things happened; I have not verified causation.</strong></li>
+      <li><strong>All I wrote was dates and what I had said on each of them.</strong> There was no wording pointing out any failing on their part. Whether that mattered, I don't know — <strong>there is nothing to compare against, so that is all I can say.</strong></li>
+      <li><strong>Keep the pre-migration list of items at hand until the very end.</strong> You are told in advance that the certificates screen becomes unavailable, but not that it will surface as a 403 in CI. <strong>What the error message points at (a certificate) and what is actually missing (the state of the account) don't always match.</strong></li>
+      <li><strong>"No impact right now" is not "no impact ever."</strong> Work you have no plans to start can still come up while the migration is running. How long the restriction lasts is not yours to decide.</li>
+      <li><strong>The final agreement was not a new enrollment but an assignment of rights.</strong> That is why the existing term carries over and you don't pay the annual fee twice. <strong>The clauses also spell out obligations, though: updating tax information after the assignment, and correcting metadata within 30 days.</strong> They're worth reading before you consent.</li>
+    </ol>
+  </section>
+
+  <p class="note">This article records the period from August 24 to September 16, 2026. The screens and the email text are the real ones, but <strong>the D-U-N-S number, enrollment ID, Team ID, phone number, address, and names are redacted</strong> (names in quoted text are replaced with a placeholder). I did not save the screen from the self-service rejection on August 24 or the error screen from September 2; the latter is shown as an accurate reproduction of the wording.<br><strong>Whether the display name on the App Store has changed to the trade name, I have not checked as of this writing.</strong><br>Apple's review criteria and operations can change. <strong>The same steps will not necessarily produce the same result.</strong></p>
+</div>
+
+<div class="backline">
+  <span class="free"><span class="ja">引用・転載・改変　自由</span><span class="en">Quote, republish, and modify freely</span></span>
+  <a href="/">HY Studio</a>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById("langBtn");
+  var tj=btn.querySelector("[data-tag=ja]"), te=btn.querySelector("[data-tag=en]");
+  function apply(l){root.setAttribute("data-lang",l);root.setAttribute("lang",l);tj.className=l==="ja"?"cur":"";te.className=l==="en"?"cur":"";try{localStorage.setItem("hy-lang",l)}catch(e){}}
+  var saved="ja"; try{saved=localStorage.getItem("hy-lang")||"ja"}catch(e){}
+  apply(saved);
+  btn.addEventListener("click",function(){apply(root.getAttribute("data-lang")==="ja"?"en":"ja")});
+})();
+</script>
+</body>
+</html>
