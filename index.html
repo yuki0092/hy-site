@@ -146,16 +146,6 @@
     font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; color:var(--ink-2);
   }
 
-  .apps-empty{
-    border:1px dashed var(--line); border-radius:14px; padding:26px 22px;
-    display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center;
-    background:var(--card);
-  }
-  .apps-empty .dot{
-    width:7px; height:7px; border-radius:50%; background:var(--accent);
-    box-shadow:0 0 0 5px color-mix(in srgb, var(--accent) 16%, transparent);
-  }
-  .apps-empty p{color:var(--ink-2); font-size:13.5px}
 
   /* APPS の下を2カラムに。左が公開アプリ、右がノート。
      狭い画面では縦に積む（アプリ→ノートの順）。 */
@@ -241,10 +231,12 @@
         <div class="col">
           <span class="collbl ja">公開アプリ</span>
           <span class="collbl en">APPS</span>
-          <div class="apps-empty">
-            <span class="dot" aria-hidden="true"></span>
-            <p class="ja">公開しているアプリはまだありません。</p>
-            <p class="en">No apps released yet.</p>
+          <div class="notes">
+            <div class="note-item">
+              <span class="ja"><a href="/shelfy/">Shelfy — アプリを自動で仕分ける</a></span><span class="en"><a href="/shelfy/index.en.html">Shelfy — sorts your apps automatically</a></span>
+              <p class="ja">ホーム画面の整理、卒業しよう。開いた時にはもう仕分けが終わっています。</p>
+              <p class="en">Stop tidying your home screen. By the time you open it, the sorting is done.</p>
+            </div>
           </div>
         </div>
 
