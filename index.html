@@ -169,6 +169,14 @@
   .note-item a:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
   .note-item p{color:var(--ink-2); font-size:12.5px; line-height:1.7}
 
+  /* 公開アプリ：アイコンを左、名前と説明を右に置く */
+  .app-item{flex-direction:row; align-items:flex-start; gap:14px}
+  .app-icon{
+    flex:none; width:52px; height:52px; border-radius:12px; display:block;
+    background:#fff; border:1px solid var(--line);
+  }
+  .app-body{display:flex; flex-direction:column; gap:6px; min-width:0}
+
   footer{
     margin-top:14vh; padding-top:22px; border-top:1px solid var(--line);
     display:flex; flex-wrap:wrap; gap:32px;
@@ -232,10 +240,13 @@
           <span class="collbl ja">公開アプリ</span>
           <span class="collbl en">APPS</span>
           <div class="notes">
-            <div class="note-item">
-              <span class="ja"><a href="/shelfy/">アプリ整理 Shelfy - 自動で仕分け</a></span><span class="en"><a href="/shelfy/index.en.html">Shelfy - App Organizer</a></span>
-              <p class="ja">ホーム画面の整理、卒業しよう。開いた時にはもう仕分けが終わっています。</p>
-              <p class="en">Stop tidying your home screen. By the time you open it, the sorting is done.</p>
+            <div class="note-item app-item">
+              <img class="app-icon" src="/img/apps/shelfy.png" alt="" width="52" height="52" loading="lazy">
+              <div class="app-body">
+                <span class="ja"><a href="/shelfy/">アプリ整理 Shelfy - 自動で仕分け</a></span><span class="en"><a href="/shelfy/index.en.html">Shelfy - App Organizer</a></span>
+                <p class="ja">ホーム画面の整理、卒業しよう。開いた時にはもう仕分けが終わっています。</p>
+                <p class="en">Stop tidying your home screen. By the time you open it, the sorting is done.</p>
+              </div>
             </div>
           </div>
         </div>
