@@ -1,5 +1,0 @@
-{
-  "android": { "minBuild": 7 },
-  "ios": { "minBuild": 7 },
-  "message": "（確認用）この画面が出れば、古い版を止める仕組みは動いています"
-}
