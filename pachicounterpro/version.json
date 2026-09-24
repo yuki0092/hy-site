@@ -1,0 +1,9 @@
+{
+  "android": {
+    "minBuild": 1
+  },
+  "ios": {
+    "minBuild": 1
+  },
+  "message": null
+}
