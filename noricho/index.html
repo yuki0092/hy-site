@@ -73,7 +73,10 @@
     background:radial-gradient(120% 80% at 82% -10%, var(--gold-soft), transparent 60%),
               radial-gradient(90% 70% at 8% 0%, var(--mint-soft), transparent 55%)}
   .hero-grid{position:relative;z-index:1}
-  .hero-copy{max-width:760px}
+  /* 上の部分（画像・3つのカード・ストアのボタン）は下の段より幅が狭いので、左に寄らないよう中央に置く（2026-09-26） */
+  .hero-copy{max-width:760px;margin:0 auto}
+  .hero-art{margin:0 auto}
+  .hero .cta-row{justify-content:center}
   /* Sized so the longer 2nd line ("プロ仕様のノリ打ちツール。") always fits on
      one line from ~360px up — keeps the headline to exactly two lines. */
   h1{font-size:clamp(24px,6.2vw,58px);line-height:1.16;letter-spacing:-.02em;font-weight:900;word-break:keep-all;margin:0}
