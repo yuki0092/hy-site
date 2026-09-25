@@ -176,6 +176,8 @@
     background:#fff; border:1px solid var(--line);
   }
   .app-body{display:flex; flex-direction:column; gap:6px; min-width:0}
+  /* アイコンもリンクにする。文字のリンク用の下線は付けない */
+  .app-item > a{display:block; flex:none; border-bottom:none; line-height:0}
 
   footer{
     margin-top:14vh; padding-top:22px; border-top:1px solid var(--line);
@@ -241,7 +243,7 @@
           <span class="collbl en">APPS</span>
           <div class="notes">
             <div class="note-item app-item">
-              <img class="app-icon" src="/img/apps/shelfy.png" alt="" width="52" height="52" loading="lazy">
+              <a class="ja" href="/shelfy/"><img class="app-icon" src="/img/apps/shelfy.png" alt="Shelfy" width="52" height="52" loading="lazy"></a><a class="en" href="/shelfy/index.en.html"><img class="app-icon" src="/img/apps/shelfy.png" alt="Shelfy" width="52" height="52" loading="lazy"></a>
               <div class="app-body">
                 <span class="ja"><a href="/shelfy/">アプリ整理 Shelfy - 自動で仕分け</a></span><span class="en"><a href="/shelfy/index.en.html">Shelfy - App Organizer</a></span>
                 <p class="ja">ホーム画面の整理、卒業しよう。開いた時にはもう仕分けが終わっています。</p>
@@ -249,7 +251,7 @@
               </div>
             </div>
             <div class="note-item app-item">
-              <img class="app-icon" src="/img/apps/noricho.png" alt="" width="52" height="52" loading="lazy">
+              <a href="/noricho/"><img class="app-icon" src="/img/apps/noricho.png" alt="ノリ帳" width="52" height="52" loading="lazy"></a>
               <div class="app-body">
                 <span class="ja"><a href="/noricho/">ノリ打ち計算　ノリ帳</a></span><span class="en"><a href="/noricho/">Noricho (Japan only)</a></span>
                 <p class="ja">ノリ打ちの収支管理はこれ1つ。投資・回収が全員の画面にその場で反映。iOS 配信中／Android 準備中。</p>
