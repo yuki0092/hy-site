@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>LunaMixer — Getting Started</title>
+<style>
+:root {
+  --bg:#f5f8ff; --bg2:#eef4ff; --surface:rgba(255,255,255,.93); --surface-solid:#fff;
+  --text:#19253d; --muted:#65718b; --line:#dbe5f3; --navy:#22365f; --blue:#6f8fbe;
+  --blue2:#9cb8dd; --gold:#d7ad63; --gold2:#f4dfb5; --ok:#4f8a72; --warn:#a86e22; --danger:#b55b5b;
+  --shadow:0 10px 28px rgba(34,56,94,.10); --soft:0 4px 14px rgba(34,56,94,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0f1727; --bg2:#132035; --surface:rgba(24,37,61,.95); --surface-solid:#18253d;
+    --text:#eef4ff; --muted:#aebad0; --line:#2d3d5b; --navy:#dfeaff; --blue:#8fb0de;
+    --blue2:#6f92c3; --gold:#e8c77f; --gold2:#6d5730; --ok:#7cc3a4; --warn:#e5b568; --danger:#e08d8d;
+    --shadow:0 12px 32px rgba(0,0,0,.28); --soft:0 5px 16px rgba(0,0,0,.22);
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0f1727; --bg2:#132035; --surface:rgba(24,37,61,.95); --surface-solid:#18253d;
+  --text:#eef4ff; --muted:#aebad0; --line:#2d3d5b; --navy:#dfeaff; --blue:#8fb0de;
+  --blue2:#6f92c3; --gold:#e8c77f; --gold2:#6d5730; --ok:#7cc3a4; --warn:#e5b568; --danger:#e08d8d;
+  --shadow:0 12px 32px rgba(0,0,0,.28); --soft:0 5px 16px rgba(0,0,0,.22);
+}
+:root[data-theme="light"] {
+  --bg:#f5f8ff; --bg2:#eef4ff; --surface:rgba(255,255,255,.93); --surface-solid:#fff;
+  --text:#19253d; --muted:#65718b; --line:#dbe5f3; --navy:#22365f; --blue:#6f8fbe;
+  --blue2:#9cb8dd; --gold:#d7ad63; --gold2:#f4dfb5; --ok:#4f8a72; --warn:#a86e22; --danger:#b55b5b;
+  --shadow:0 10px 28px rgba(34,56,94,.10); --soft:0 4px 14px rgba(34,56,94,.08);
+}
+
+.kv-guide, .kv-guide * { box-sizing:border-box; }
+.kv-guide {
+  width:100%; max-width:760px; margin:0 auto; overflow:hidden; color:var(--text);
+  background:
+    radial-gradient(circle at 86px 96px, rgba(214,173,99,.14) 0 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 42px) 210px, rgba(111,143,190,.16) 0 2px, transparent 3px),
+    linear-gradient(180deg,var(--bg) 0,var(--bg2) 420px,var(--bg) 100%);
+  font:16px/1.68 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Yu Gothic",sans-serif;
+  padding:0 0 52px;
+}
+.kv-guide img { max-width:100%; display:block; }
+.kv-guide h1,.kv-guide h2,.kv-guide h3,.kv-guide p { margin-top:0; }
+.kv-guide h2 { font-size:1.35rem; line-height:1.35; letter-spacing:.01em; margin:0 0 10px; color:var(--navy); }
+.kv-guide h3 { font-size:1.03rem; line-height:1.42; margin:0 0 6px; color:var(--navy); }
+.kv-guide p { margin-bottom:10px; }
+.kv-guide strong { color:var(--navy); }
+.kv-guide code { overflow-wrap:anywhere; }
+
+/* min-height はヒーローの絵（120px・右下に絶対配置）が見切れない下限。
+   ピルを4つから2つへ減らして2行ぶん詰めたので、その分だけ下げてある。 */
+.hero {
+  position:relative; min-height:306px; padding:22px 16px 14px; overflow:hidden;
+}
+.hero:before {
+  content:""; position:absolute; width:250px; height:250px; border-radius:50%;
+  background:radial-gradient(circle,var(--gold2),transparent 68%); top:-120px; right:-95px; opacity:.76;
+}
+.eyebrow { display:inline-flex; align-items:center; gap:8px; color:var(--blue); font-weight:900; font-size:.8rem; letter-spacing:.08em; }
+.eyebrow:before { content:"☾"; color:var(--gold); font-size:1.05rem; }
+.hero h1 { margin:8px 0 8px; color:var(--navy); font-size:clamp(1.9rem,8vw,2.8rem); line-height:1.12; }
+.hero h1 span { color:var(--blue); }
+/* 右下の絵（120px幅・絶対配置）の下に文字が潜らないための逃げ。
+   日本語より行数が増える英語で、実際に絵と重なったため追加した。 */
+.hero-lead { max-width:33em; color:var(--muted); font-size:.94rem; padding-right:104px; }
+.hero-points {
+  display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 0; padding-right:104px;
+}
+.pill {
+  padding:7px 10px; border-radius:999px; border:1px solid var(--line); background:var(--surface);
+  box-shadow:var(--soft); font-size:.75rem; font-weight:850; white-space:nowrap;
+}
+.hero-art {
+  position:absolute; right:2px; bottom:4px; width:120px; filter:drop-shadow(0 10px 14px rgba(27,44,76,.12));
+}
+@media(max-width:420px) {
+  .hero { min-height:346px; }
+  .hero-lead { padding-right:92px; }
+  .hero-points { padding-right:92px; }
+  .hero-art { width:112px; right:0; bottom:2px; }
+}
+
+.section { padding:8px 13px; }
+.card {
+  background:var(--surface); border:1px solid var(--line); border-radius:18px; box-shadow:var(--soft);
+  padding:13px; margin-bottom:9px; backdrop-filter:blur(8px);
+}
+.compact-grid { display:grid; grid-template-columns:1fr; gap:10px; }
+@media(min-width:620px) {
+  .compact-grid.two { grid-template-columns:1fr 1fr; }
+}
+
+.lead-shell {
+  display:grid; gap:10px;
+}
+.section-title { display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; }
+.moon {
+  width:32px; height:32px; flex:0 0 32px; border-radius:50%; display:grid; place-items:center;
+  background:linear-gradient(145deg,var(--navy),var(--blue)); color:#fff; box-shadow:var(--soft);
+}
+.muted { color:var(--muted); }
+.small { font-size:.88rem; }
+.micro { font-size:.77rem; color:var(--muted); }
+.rule { border:0; border-top:1px solid var(--line); margin:12px 0; }
+
+.demo-panel {
+  padding:12px; border-radius:18px; background:linear-gradient(160deg,#142039 0,#0f1728 100%);
+  color:#f3f6ff; box-shadow:0 14px 30px rgba(18,30,53,.25); border:1px solid rgba(255,255,255,.08);
+}
+.demo-title { display:flex; justify-content:space-between; align-items:center; font-weight:900; margin:0 2px 8px; }
+.demo-title small { color:#a9b9d6; font-weight:600; }
+.app-row {
+  display:grid; grid-template-columns:30px minmax(0,1fr) 40px; gap:8px; align-items:center;
+  padding:8px 0; border-top:1px solid rgba(255,255,255,.08);
+}
+.app-row:first-of-type { border-top:0; }
+.app-icon { width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#2f4773;font-size:.74rem;font-weight:900; }
+.app-main { min-width:0; }
+.app-name { display:flex; flex-wrap:wrap; gap:4px 7px; align-items:center; font-size:.88rem; font-weight:800; }
+.state { font-size:.62rem; color:#c7d5ef; padding:1px 6px; border:1px solid rgba(255,255,255,.18); border-radius:99px; }
+.kind { color:#9eb0d0; font-size:.67rem; margin-top:1px; }
+.slider { height:4px; background:#34445f; border-radius:99px; margin-top:5px; overflow:hidden; }
+.slider i { display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,#80a9e6,#eed18d); }
+.val { text-align:right; font-weight:800; font-variant-numeric:tabular-nums; font-size:.79rem; }
+.end-control { margin-top:8px; padding:8px 10px; border-radius:11px; text-align:center; background:#263859; color:#fff; font-size:.77rem; font-weight:850; }
+
+.notice {
+  display:flex; gap:10px; align-items:flex-start; padding:12px 13px; border-radius:15px; margin:10px 0;
+  border:1px solid var(--line); background:var(--surface-solid);
+}
+.notice .ico { flex:0 0 28px; width:28px; height:28px; border-radius:50%; display:grid; place-items:center; font-weight:900; }
+.notice.warn .ico { background:rgba(214,173,99,.20); color:var(--warn); }
+.notice.danger { border-color:color-mix(in srgb,var(--danger) 38%,var(--line)); }
+.notice.danger .ico { background:rgba(181,91,91,.15); color:var(--danger); }
+.notice.ok .ico { background:rgba(79,138,114,.15); color:var(--ok); }
+.notice p:last-child { margin-bottom:0; }
+
+.quick {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:10px;
+}
+.quick > div {
+  border:1px solid var(--line); border-radius:13px; padding:10px 7px; text-align:center;
+  background:var(--surface-solid); font-size:.73rem; font-weight:850;
+}
+.quick .big { display:block; color:var(--navy); font-size:.98rem; margin-bottom:1px; }
+@media(max-width:390px) {
+  .quick { grid-template-columns:1fr; }
+}
+
+.step {
+  border:1px solid var(--line); background:var(--surface); border-radius:18px;
+  padding:14px; margin:0 0 12px; box-shadow:var(--soft);
+}
+.step-head { display:grid; grid-template-columns:38px minmax(0,1fr); gap:10px; align-items:start; margin-bottom:8px; }
+.step-no {
+  width:38px; height:38px; border-radius:50%; display:grid; place-items:center;
+  background:linear-gradient(145deg,var(--navy),var(--blue)); color:#fff; font-weight:900; box-shadow:var(--soft);
+}
+.path { color:var(--muted); font-size:.77rem; line-height:1.4; }
+.before {
+  background:linear-gradient(135deg,rgba(111,143,190,.12),rgba(214,173,99,.10));
+  border:1px solid var(--line); border-radius:13px; padding:10px 11px; margin:9px 0 10px; font-size:.89rem;
+}
+.before b { display:block; margin-bottom:2px; }
+ol.clean { padding-left:1.2em; margin:0 0 10px; }
+ol.clean li { margin:5px 0; padding-left:1px; }
+.in-app-hint { text-align:center; font-size:.68rem; letter-spacing:.06em; color:var(--muted); font-weight:850; margin:8px 0 2px; }
+.action { text-align:center; cursor:default;
+  width:100%; appearance:none; border:0; border-radius:13px; padding:12px 14px; margin:3px 0 2px;
+  background:linear-gradient(135deg,var(--navy),var(--blue)); color:#fff; font:inherit; font-weight:900;
+  box-shadow:0 6px 14px rgba(39,62,103,.16);
+}
+.action-note { text-align:center; font-size:.72rem; color:var(--muted); margin:0; }
+
+.code-rule {
+  border:1.4px solid var(--gold); background:linear-gradient(145deg,rgba(214,173,99,.14),rgba(111,143,190,.09));
+  border-radius:15px; padding:12px; margin:10px 0;
+}
+.code-rule .six { font-size:1.55rem; letter-spacing:.16em; color:var(--navy); font-weight:900; text-align:center; margin:2px 0 7px; }
+.dont-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.dont-grid span { padding:7px 6px; text-align:center; border-radius:10px; background:var(--surface-solid); border:1px solid var(--line); font-size:.74rem; font-weight:800; }
+
+details {
+  border:1px solid var(--line); border-radius:13px; background:var(--surface-solid); overflow:hidden; margin:8px 0;
+}
+summary { cursor:pointer; list-style:none; padding:11px 13px; font-weight:850; color:var(--navy); }
+summary::-webkit-details-marker { display:none; }
+summary:after { content:"＋"; float:right; color:var(--blue); }
+details[open] summary:after { content:"−"; }
+.detail-body { padding:0 13px 13px; color:var(--text); }
+.detail-body p:last-child { margin-bottom:0; }
+
+.state-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+@media(max-width:440px) {
+  .state-grid { grid-template-columns:1fr; }
+}
+.state-card {
+  border:1px solid var(--line); border-radius:15px; padding:12px; background:var(--surface); min-width:0;
+}
+.toggles { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:7px; }
+.toggle-chip { padding:4px 7px; border-radius:999px; border:1px solid var(--line); font-size:.7rem; font-weight:850; }
+.toggle-chip.on { background:rgba(79,138,114,.13); color:var(--ok); }
+.toggle-chip.off { background:rgba(181,91,91,.10); color:var(--danger); }
+.results { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.result { padding:8px 6px; border-radius:10px; background:var(--bg2); font-size:.74rem; text-align:center; }
+.result b { display:block; font-size:.92rem; }
+
+.finish {
+  display:grid; grid-template-columns:minmax(0,1fr) 101px; gap:6px; align-items:end; position:relative; overflow:hidden;
+  background:linear-gradient(145deg,rgba(111,143,190,.14),rgba(214,173,99,.12));
+}
+.finish img { width:101px; justify-self:end; align-self:end; margin-right:-4px; margin-bottom:-2px; filter:drop-shadow(0 7px 9px rgba(21,37,65,.12)); }
+
+.checklist { display:grid; gap:8px; }
+.check { display:grid; grid-template-columns:26px minmax(0,1fr); gap:8px; align-items:start; }
+.check i { width:26px; height:26px; border-radius:50%; display:grid; place-items:center; background:rgba(79,138,114,.15); color:var(--ok); font-style:normal; font-weight:900; }
+
+.lib-list { margin:0; padding:0; list-style:none; display:grid; gap:9px; }
+.lib-list li { border-left:3px solid var(--blue2); padding-left:10px; }
+.lib-name { font-weight:900; color:var(--navy); }
+.license-pre {
+  margin:0; padding:10px; max-width:100%; white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word;
+  font:11px/1.52 ui-monospace,SFMono-Regular,Consolas,monospace; color:var(--text); background:var(--bg2);
+  border-radius:12px; overflow-x:hidden;
+}
+.footer-note { text-align:center; color:var(--muted); font-size:.75rem; padding:16px; line-height:2; }
+.footer-note a { color:var(--blue); }
+
+.store-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:18px 0 6px}
+.store-btn{display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border-radius:14px;border:1px solid var(--line);
+  background:var(--surface-solid);color:var(--muted);font-weight:700;opacity:.55;cursor:default}
+.store-btn small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.05em;line-height:1.1}
+.store-btn b{display:block;font-size:.95rem;line-height:1.15}
+.lang-switch{text-align:right;font-size:.8rem;padding:10px 16px 0}
+.lang-switch a{color:var(--blue)}
+</style>
+<div class="lang-switch"><a href="index.html">日本語</a></div>
+<main class="kv-guide">
+  <section class="hero">
+    <div class="eyebrow">LunaMixer: Per-App Volume</div>
+    <h1>One sound <span>at a time.</span></h1>
+    <p class="hero-lead">One-time setup, so every app that is playing gets its own volume. <strong>No computer, no cable</strong> — just Wi-Fi for the first run, all on this phone.</p>
+    <div class="store-row"><span class="store-btn" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17c0 .6.7 1 1.2.6l12.3-8.5c.5-.3.5-1 0-1.4L4.2 2.9C3.7 2.5 3 2.9 3 3.5z"/></svg><span><small>Coming soon</small><b>Google Play</b></span></span></div>
+    <div class="hero-points">
+      <span class="pill">No computer</span>
+      <span class="pill">No root</span>
+      <span class="pill">No extra app</span>
+      <span class="pill">Wi-Fi first run only</span>
+      
+    </div>
+    <img class="hero-art" alt="" src="img/en-1.png">
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="lead-shell">
+      <div class="demo-panel" aria-label="The LunaMixer mixer panel" style="padding:0;overflow:hidden;">
+        <img src="img/en-2.png" alt="Screenshot of the LunaMixer mixer on a phone, taken mid-navigation. YouTube, Maps and LINE each have their own volume slider." style="display:block;width:100%;">
+      </div>
+
+      <div class="compact-grid">
+        <div class="card">
+          <h2>What this app does</h2>
+          <p class="small muted" style="margin-bottom:0">The usual per-app volume apps switch the whole device volume to match whichever app is in front. <strong>LunaMixer</strong> sets a separate volume for each app that is playing, all at the same time.</p>
+        </div>
+      </div>
+
+      <div class="notice warn" style="margin-top:0">
+        <div class="ico">!</div>
+        <div><h3>If you have a Galaxy</h3><p class="small">On Galaxy (Samsung) phones, the built-in "Sound Assistant" may already do this. Trying that first is probably quicker. This app is for phones without an equivalent.</p></div>
+      </div>
+
+      <details>
+        <summary>Why does it need a special setup?</summary>
+        <div class="detail-body small">
+          The volume controls this app uses cannot be reached through ordinary Android settings, so the first connection is made over <strong>wireless debugging</strong>. Leaving <strong>USB debugging</strong> on afterwards keeps that connection alive even with no Wi-Fi around. Everything used here is a standard part of Android.
+        </div>
+      </details>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="step">
+      <div class="step-head"><div class="step-no">0</div><div><h3>Install from Google Play</h3><div class="path">Google Play → LunaMixer</div></div></div>
+      <div class="before"><b>Important</b>Tap <strong>Allow</strong> when it asks about notifications. Later on, the six-digit code is typed into this app's notification.</div>
+      <ol class="clean">
+        <li>Get <strong>LunaMixer</strong> from Google Play.</li>
+        <li>Open the app and tap <strong>Start</strong>.</li>
+        <li>Tap <strong>Allow</strong> when it asks about notifications.</li>
+      </ol>
+      <details>
+        <summary>More about this screen</summary>
+        <div class="detail-body small">
+          <p style="margin-bottom:0"><strong>Notifications have to be allowed.</strong> In step 5 you type the six-digit pairing code into this app's notification. <strong>Refuse notifications and that box never appears, so setup cannot be finished.</strong> If you have already refused, allow it again under Settings → Apps → LunaMixer → Notifications.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><div class="moon">6</div><div><h2>Setup is six steps</h2><div class="small muted">Each step runs "what it is for → the button → what to do".</div></div></div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-no">1</div><div><h3>Reveal the developer menu</h3><div class="path">Settings → About phone → Build number</div></div></div>
+      <div class="before">Tap "Build number" seven times in a row, which makes the developer menu available.</div>
+      <div class="in-app-hint">What to do on this screen</div>
+      <ol class="clean">
+        <li>Open <strong>About phone</strong>.</li>
+        <li>Tap <strong>Build number seven times</strong>.</li>
+        <li>Enter your PIN or pattern if you are asked for it.</li>
+        <li>"You are now a developer!" means it worked — go back and continue.</li>
+      </ol>
+      <div class="in-app-hint">Button inside the app</div><div class="action">Open About phone</div>
+      <p class="action-note">Already turned on before? Move straight on.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-no">2</div><div><h3>Turn on developer options</h3><div class="path">Settings → System → Developer options</div></div></div>
+      <div class="before">Turn on <strong>"Use developer options"</strong> at the top of the screen.</div>
+      <div class="in-app-hint">What to do on this screen</div>
+      <ol class="clean">
+        <li>Open <strong>Developer options</strong>.</li>
+        <li>Turn on the switch at the top.</li>
+        <li>Come back to the app and continue.</li>
+      </ol>
+      <div class="in-app-hint">Button inside the app</div><div class="action">Open Developer options</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-no">3</div><div><h3>Connect to Wi-Fi</h3><div class="path">Settings → Network &amp; internet → Wi-Fi</div></div></div>
+      <div class="before">Wireless debugging only works while you are on Wi-Fi. <strong>That Wi-Fi does not have to reach the internet.</strong></div>
+      <div class="in-app-hint">What to do on this screen</div>
+      <ol class="clean">
+        <li>Pick the Wi-Fi network to use.</li>
+        <li>Wait until it says connected.</li>
+        <li>Come back to this app.</li>
+      </ol>
+      <div class="in-app-hint">Button inside the app</div><div class="action">Open Wi-Fi settings</div>
+      <p class="action-note">Mobile data on its own will not get you past this. It is the one step that will not let you continue until it is done.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-no">4</div><div><h3>Turn on wireless debugging</h3><div class="path">Developer options → Wireless debugging</div></div></div>
+      <div class="before">Turn on the switch beside <strong>Wireless debugging</strong> in the list → if <strong>"Allow wireless debugging?"</strong> appears, tap <strong>Allow</strong>.</div>
+      <div class="in-app-hint">What to do on this screen</div>
+      <ol class="clean">
+        <li>Open <strong>Developer options</strong>.</li>
+        <li>Find <strong>Wireless debugging</strong> under the <strong>Debugging</strong> heading.</li>
+        <li>Turn on the switch beside it (you do not have to open the screen).</li>
+      </ol>
+      <div class="in-app-hint">Button inside the app</div><div class="action">Open Developer options</div>
+      <details>
+        <summary>If you cannot find it</summary>
+        <div class="detail-body small">Searching Settings for <strong>"wireless"</strong> is the surest way. It sits under the <strong>Debugging</strong> heading, near <strong>USB debugging</strong>, though the order differs from phone to phone.</div>
+      </details>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-no">5</div><div><h3>Enter the six-digit pairing code in the notification</h3><div class="path">Wireless debugging → Pair device with pairing code</div></div></div>
+      <div class="code-rule">
+        <div class="micro" style="text-align:center">The code goes into the notification, without leaving Settings</div>
+        <div class="six">123 456</div>
+        <div class="dont-grid">
+          <span>✓ Leave the Settings screen</span><span>✓ Pull down the shade</span>
+          <span>✓ Type it in the notification</span><span>× Do not go home</span>
+          <span>× Do not write it down</span><span>× Do not open another app</span>
+        </div>
+      </div>
+      <div class="before"><b>Important</b>The six-digit code stops working the moment you leave that screen. <strong>Pulling down the notification shade is not leaving the screen</strong> — it sits on top of Settings, and the code stays as it is.</div>
+      <div class="in-app-hint">What to do on this screen</div>
+      <ol class="clean">
+        <li>Open <strong>Developer options</strong>.</li>
+        <li><strong>Wireless debugging</strong> → <strong>"Pair device with pairing code"</strong>.</li>
+        <li>When the six-digit code appears, <strong>pull down the notification shade without leaving the screen</strong>.</li>
+        <li>On the "Type the six-digit pairing code here" notification, tap <strong>Enter</strong>, type the code and send.</li>
+      </ol>
+      <div class="in-app-hint">Button inside the app</div><div class="action">Open Developer options</div>
+      <div class="notice ok"><div class="ico">✓</div><div><strong>The notification turns into "Connected"</strong><p class="small">After you send it the notification reads "Checking the six-digit code", then "Connected / Pairing is done". Come back to the app once it is done.</p></div></div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-no">6</div><div><h3>Allow the bubble to show</h3><div class="path">Settings → Display over other apps → LunaMixer</div></div></div>
+      <div class="before">The sliders do not live in the app itself — they open from a bubble that floats on screen. Without this permission the bubble cannot appear.</div>
+      <div class="in-app-hint">What to do on this screen</div>
+      <ol class="clean">
+        <li>If a list of apps appears, choose <strong>LunaMixer</strong>.</li>
+        <li>Turn the switch on.</li>
+        <li>Come back to LunaMixer.</li>
+      </ol>
+      <div class="in-app-hint">Button inside the app</div><div class="action">Allow drawing over apps</div>
+      <div class="notice ok"><div class="ico">✓</div><div><strong>That is setup finished</strong><p class="small">Back in the app, <strong>Show bubble</strong> can now be tapped.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card finish">
+      <div>
+        <h2>From here on, it all happens in the bubble.</h2>
+        <p class="small" style="margin-bottom:0">The sliders open from the bubble floating over your screen, not from the app itself. Next time, all you do is tap <strong>Show bubble</strong>.</p>
+      </div>
+      <img alt="" src="img/en-3.png">
+    </div>
+
+    <div class="card">
+      <h2>Using it</h2>
+      <ol class="clean">
+        <li>Open the app and tap <strong>Show bubble</strong>.</li>
+        <li>Drag the round bubble wherever you want it.</li>
+        <li>Tap the bubble to open the list of apps that are playing.</li>
+        <li>Move a slider and that app's volume changes as you go.</li>
+      </ol>
+      <div class="notice ok"><div class="ico">↘</div><div><strong>Finer control at low volumes</strong><p class="small">Most adjustments land between 0 and 30%, so the bottom 60% or so of the slider is given to that range.</p></div></div>
+      <p class="small" style="margin-bottom:0"><strong>To put everything back:</strong> tap <strong>Stop volume control</strong> in the panel, or close both the app and the bubble. Volumes return to normal a few seconds later.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><div class="moon">↔</div><div><h2>Settings the connection needs</h2><div class="small muted">Four combinations, that is all.</div></div></div>
+    <div class="notice ok"><div class="ico">✓</div><div><strong>Leaving USB debugging on is the easy option</strong><p class="small">With USB debugging on, the connection survives even after wireless debugging is turned off.</p></div></div>
+    <div class="state-grid">
+      <div class="state-card"><div class="toggles"><span class="toggle-chip on">USB debugging ON</span><span class="toggle-chip on">Wireless debugging ON</span></div><div class="results"><div class="result">Stays on<b>○</b></div><div class="result">Restart<b>○</b></div></div></div>
+      <div class="state-card"><div class="toggles"><span class="toggle-chip on">USB debugging ON</span><span class="toggle-chip off">Wireless debugging OFF</span></div><div class="results"><div class="result">Stays on<b>○</b></div><div class="result">Restart<b>×</b></div></div></div>
+      <div class="state-card"><div class="toggles"><span class="toggle-chip off">USB debugging OFF</span><span class="toggle-chip on">Wireless debugging ON</span></div><div class="results"><div class="result">Stays on<b>○</b></div><div class="result">Restart<b>○</b></div></div></div>
+      <div class="state-card"><div class="toggles"><span class="toggle-chip off">USB debugging OFF</span><span class="toggle-chip off">Wireless debugging OFF</span></div><div class="results"><div class="result">Stays on<b>×</b></div><div class="result">Restart<b>×</b></div></div></div>
+    </div>
+    <div class="card small">
+      <p><strong>Stays on:</strong> a connection that has been made is not dropped. Close the app and it is ready the moment you open it again.</p>
+      <p style="margin-bottom:0"><strong>Restart:</strong> a dropped connection can be made again with "Turn volume control back on". You need this after both switches have been off.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><div class="moon">?</div><div><h2>If something goes wrong</h2></div></div>
+    <details><summary>Wireless debugging will not turn on</summary><div class="detail-body small">Connect to Wi-Fi first. A Wi-Fi network with no internet access is fine.</div></details>
+    <details><summary>The notification for the code never appears</summary><div class="detail-body small">Notifications are probably not allowed. Check Settings → Apps → LunaMixer → Notifications. The notification appears the moment you tap [Open Developer options] inside the app.</div></details>
+    <details><summary>The code was sent but nothing connects</summary><div class="detail-body small">The code has probably changed. Going home or opening another app changes the digits (pulling down the notification shade does not). Opening the app tells you the current reason; start the pairing again from the beginning.</div></details>
+    <details><summary>It was working, now it says "Not connected"</summary><div class="detail-body small">Both USB debugging and wireless debugging probably ended up off. Get on Wi-Fi, turn wireless debugging back on, and tap "Turn volume control back on".</div></details>
+    <details><summary>The volumes went back to normal on their own</summary><div class="detail-body small">Closing both the app and the bubble returns everything to normal after a few seconds. Leave the bubble showing to keep your settings in effect.</div></details>
+    <details><summary>One app ignores the slider</summary><div class="detail-body small">A few apps produce sound in an unusual way — some games in particular — and cannot be controlled this way.</div></details>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><div class="moon">!</div><div><h2>If you leave USB debugging on</h2></div></div>
+    <div class="card">
+      <div class="checklist">
+        <div class="check"><i>1</i><div><strong>Always read the prompt when a new computer connects</strong><div class="small muted">You will be asked "Allow USB debugging?". If you were not expecting it, refuse.</div></div></div>
+        <div class="check"><i>2</i><div><strong>"Always allow" only for computers you trust</strong><div class="small muted">Once allowed, that computer may connect again without asking.</div></div></div>
+        <div class="check"><i>3</i><div><strong>Avoid unknown USB devices, chargers and cables</strong><div class="small muted">If a public charging point brings up a connection prompt you did not expect, always refuse.</div></div></div>
+      </div>
+      <hr class="rule">
+      <p class="small" style="margin-bottom:0">If it bothers you, turn USB debugging back off when you are not using it. Next time, get on Wi-Fi, turn wireless debugging on, and tap <strong>Turn volume control back on</strong>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><div class="moon">§</div><div><h2>Licences</h2><div class="small muted">Third-party code and attribution.</div></div></div>
+    <div class="card">
+      <p class="small">This app contains code written by other people. Where it came from, the licence chosen, and the changes made are set out below.</p>
+      <ul class="lib-list small">
+        <li><div class="lib-name">Apache License 2.0 / full text at the bottom of this page</div>
+          <b>libadb-android (Muntashir Al-Islam and others)</b> — used to pair with wireless debugging and connect to it from inside the device. Apache chosen, where GPL-3.0 was the alternative. <b>Modified</b>: package names changed; the SPAKE2 implementation replaced with our own, in place of LGPL-3.0 spake2-java.<br>
+          <b>Conscrypt (The Android Open Source Project)</b> — used for TLS during pairing. Unmodified.<br>
+          <b>AndroidX / Jetpack Compose (Google)</b> — used to draw the screens and for the app's basic machinery. Unmodified.<br>
+          <b>kotlinx.coroutines (JetBrains)</b> — used to get slow work done without stopping the screen. Unmodified.<br>
+          <b>com.google.android.datatransport (3) / com.google.firebase:firebase-encoders (3) / com.google.guava:listenablefuture / javax.inject / org.jspecify / org.jetbrains:annotations</b> — used internally by the in-app purchase library. Unmodified.</li>
+        <li><div class="lib-name">Android Software Development Kit License / text not bundled</div>
+          <b>com.android.billingclient:billing / billing-ktx</b> — used for the in-app purchase. Unmodified.<br>
+          <b>com.google.android.gms:play-services-base / basement / location / places-placereport / tasks</b> — used internally by the libraries above; not asked for directly. Unmodified.<br>
+          Terms at <a href="https://developer.android.com/studio/terms.html">developer.android.com/studio/terms.html</a></li>
+        <li><div class="lib-name">Play Core Software Development Kit Terms of Service / text not bundled</div>
+          <b>com.google.android.play:review / review-ktx</b> — used to ask for a review from inside the app. Unmodified.<br>
+          <b>com.google.android.play:core-common</b> — used internally by the libraries above; not asked for directly. Unmodified.<br>
+          Terms at <a href="https://developer.android.com/guide/playcore/license">developer.android.com/guide/playcore/license</a></li>        <li><div class="lib-name">Bouncy Castle Licence (MIT-style)</div>
+          <b>org.bouncycastle:bcprov-jdk15to18 / bcpkix-jdk15to18 / bcutil-jdk15to18</b> — used for key derivation (HKDF), encryption (AES-GCM), and building the certificate used to connect. Unmodified.<br>
+          Terms at <a href="https://www.bouncycastle.org/licence.html">bouncycastle.org/licence.html</a></li>
+        <li><div class="lib-name">Permissive, ISC-style licence</div>
+          <b>SPAKE2 / edwards25519 (BoringSSL, Google Inc.)</b> — used for the key exchange during pairing. <b>Modified</b>: ported to Kotlin from the BoringSSL C implementation.</li>
+        <li><div class="lib-name">SIL Open Font License 1.1 / full text ships inside the app (assets/fonts/)</div>
+          <b>Zen Kaku Gothic New / Manrope</b> — bundled as the app's typefaces. Unmodified.</li>
+      </ul>
+      <p class="small" style="margin-bottom:0"><strong>Not required by any licence, recorded anyway: Shizuku (RikkaApps).</strong> Starting a separate process with shell privileges and taking a Binder from it is a technique Shizuku established. This app uses none of its source and was written independently from published descriptions, so no attribution is required. Putting it in the list above would make that list — the terms this app is under — inaccurate, so it sits here instead.</p>      <details style="margin-top:12px">
+        <summary>Show the full text of the Apache License 2.0</summary>
+        <div class="detail-body"><pre class="license-pre">Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      &quot;License&quot; shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      &quot;Licensor&quot; shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      &quot;Legal Entity&quot; shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      &quot;control&quot; means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      &quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      &quot;Source&quot; form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      &quot;Object&quot; form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      &quot;Work&quot; shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      &quot;Derivative Works&quot; shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      &quot;Contribution&quot; shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, &quot;submitted&quot;
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as &quot;Not a Contribution.&quot;
+
+      &quot;Contributor&quot; shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a &quot;NOTICE&quot; text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets &quot;[]&quot;
+      replaced with your own identifying information. (Don&#x27;t include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same &quot;printed page&quot; as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</pre></div>
+      </details>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    LunaMixer: Per-App Volume — Setup Guide (compact ver.)<br>
+    By HY Studio · Contact <a href="mailto:info@hystudio21.com">info@hystudio21.com</a><br>
+    <a href="https://hystudio21.com/appvolume/privacy.en.html">Privacy Policy</a>
+  </div>
+</main>
