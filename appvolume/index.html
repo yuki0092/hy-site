@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@900&text=%E3%82%A2%E3%83%97%E3%83%AA%E3%81%94%E3%81%A8%E3%81%AB%E3%80%81%E9%9F%B3%E9%87%8F%E3%82%92%E8%87%AA%E7%94%B1%E3%80%82%E5%90%8C%E6%99%82%E8%AA%BF%E7%AF%80%E3%81%93%E3%81%AE%E3%81%B2%E3%81%A4%E3%81%A7%E3%83%AB%E3%83%8A%E3%83%9F%E3%82%AD%E3%82%B5%E3%83%BC&display=swap" rel="stylesheet">
 <title>ルナミキサー — はじめかた</title>
 <meta name="description" content="同時に鳴っているアプリの音量を、アプリごとに調整。PCもケーブルも不要、初回だけWi-Fiがあればこのスマホだけで完了します。">
 <meta property="og:title" content="ルナミキサー — アプリ別同時音量調節">
@@ -256,24 +258,50 @@ body{min-height:100vh;background:
 .kv-guide{background:transparent !important}
 .hero:before{display:none}
 .lang-switch{max-width:760px;margin:0 auto;display:flex;justify-content:space-between}
+
+/* 2026-10-01：ストアの1枚目と同じ構図（上に背景の月、その下に中央揃えの見出し）。見出しは月の下から始めて読みやすく */
+:root[data-theme="dark"]{--text:#f4f6ff;--muted:#d3daec;--navy:#ffffff}
+.hero{text-align:center;padding-top:max(150px,calc(10vw + 30px));min-height:0}
+.eyebrow{justify-content:center;color:#d9d3ff;font-size:.95rem;letter-spacing:.35em;font-weight:700}
+.eyebrow:before{content:none}
+.hero h1{font-family:'Zen Kaku Gothic New',inherit;font-weight:900;font-size:clamp(2.3rem,10vw,3.6rem);line-height:1.18;margin:14px 0 10px;
+  color:#fff;text-shadow:0 0 18px rgba(140,130,255,.55),0 2px 6px rgba(0,0,0,.45)}
+.hero h1 span{color:#dcd6ff}
+.hero-sub{font-family:'Zen Kaku Gothic New',inherit;font-weight:900;font-size:1.1rem;color:#eef0ff;letter-spacing:.06em;margin:0 0 14px;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+.hero-lead{padding-right:0;margin:0 auto;color:var(--muted);text-shadow:0 1px 4px rgba(0,0,0,.55)}
+/* 札は2つ目のあとで改行し、残りは幅に応じて折り返す。札の幅はそれぞれの文字に合わせる */
+.hero-points{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding-right:0}
+.hero-points .br{flex-basis:100%;height:0}
+/* ボタンと札のまとまりの右に絵を置く（絵のために1行使わない） */
+.hero-cta{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:6px}
+.hero-cta-main{min-width:0}
+.hero-cta .store-row{margin:4px 0 0}
+.hero-art{position:static;display:block;flex:0 0 auto;width:100px;margin:0}
+@media(max-width:420px){.hero-lead,.hero-points{padding-right:0}.hero-art{width:84px}.hero-cta{gap:6px}}
 </style>
 
 <div class="lang-switch"><a href="/">← HY Studio トップ</a><a href="index.en.html">English</a></div>
 <main class="kv-guide">
   <section class="hero">
-    <div class="eyebrow">ルナミキサー セットアップガイド</div>
-    <h1>音を、<span>ひとつずつ。</span></h1>
+    <div class="eyebrow">ルナミキサー</div>
+    <h1>アプリごとに、<br><span>音量を自由に。</span></h1>
+    <p class="hero-sub">同時に調節。このアプリひとつで。</p>
     <p class="hero-lead">同時に鳴っているアプリの音量を、アプリごとに調整するための初回セットアップです。<strong>PCもケーブルも不要</strong>。初回だけWi-Fiがあれば、このスマホだけで完了します。</p>
+    <div class="hero-cta">
+      <div class="hero-cta-main">
     <div class="store-row"><a class="store-btn" href="https://play.google.com/store/apps/details?id=dev.yuki.appvolume" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3.5v17c0 .6.7 1 1.2.6l12.3-8.5c.5-.3.5-1 0-1.4L4.2 2.9C3.7 2.5 3 2.9 3 3.5z"/></svg><span><small>ダウンロード</small><b>Google Play</b></span></a></div>
     <div class="hero-points">
       <span class="pill">PC不要</span>
       <span class="pill">root化不要</span>
+      <span class="br" aria-hidden="true"></span>
       <span class="pill">本アプリ単体で完結</span>
       <span class="pill">初回だけWi-Fi</span>
       <span class="pill">通信は課金のみ</span>
       
     </div>
-    <img class="hero-art" alt="" src="img/ja-1.png">
+      </div>
+      <img class="hero-art" alt="" src="img/ja-1.png">
+    </div>
   </section>
 
   <section class="section" style="padding-top:0">
