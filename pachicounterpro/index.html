@@ -102,8 +102,8 @@
   .sec-title{text-align:center;margin:56px 0 8px}
   .sec-title .k{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;color:var(--brand-2)}
   .sec-title h2{margin-top:6px;font-size:clamp(22px,4.6vw,34px);font-weight:900;line-height:1.35;word-break:keep-all}
-  .feat{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center;padding:34px 0}
-  .feat + .feat{border-top:1px dashed var(--line)}
+  .feat{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;margin:22px 0;padding:28px;
+    background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
   .feat.rev .shot{order:2}
   .shot{position:relative;max-width:300px;width:100%;margin:0 auto}
   .shot .blob{position:absolute;inset:8% -12% -4% -12%;border-radius:40% 60% 55% 45%/50% 45% 55% 50%;opacity:.28;filter:blur(2px)}
@@ -112,7 +112,7 @@
     padding:5px 12px 5px 6px;border-radius:999px}
   .num i{font-style:normal;background:#fff;border-radius:999px;width:24px;height:24px;display:grid;place-items:center;font-size:12px}
   .feat h3{margin-top:12px;font-size:clamp(21px,3.6vw,28px);font-weight:900;line-height:1.35;word-break:keep-all}
-  .feat p{margin-top:8px;color:var(--muted);font-size:15px}
+  .feat p{margin-top:8px;color:var(--muted);font-size:16px;word-break:keep-all;overflow-wrap:anywhere}
   .feat ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:9px}
   .feat li{position:relative;padding-left:30px;font-size:15px;line-height:1.65;word-break:keep-all;overflow-wrap:anywhere}
   .feat li::before{content:"";position:absolute;left:0;top:.18em;width:20px;height:20px;border-radius:50%;background:var(--soft)}
@@ -120,7 +120,7 @@
   .nw{white-space:nowrap}
   .tag{display:inline-block;margin-left:6px;font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--mint);color:#053b2e;vertical-align:middle}
   .note{margin-top:10px;font-size:13px;color:var(--muted)}
-  @media (max-width:760px){.feat,.feat.rev{grid-template-columns:1fr;gap:22px}.feat.rev .shot{order:0}.shot{max-width:250px}}
+  @media (max-width:760px){.feat,.feat.rev{grid-template-columns:1fr;gap:18px;padding:22px 20px 24px}.feat .shot,.feat.rev .shot{order:2}.shot{max-width:250px}}
 
   /* ---- 着せ替え ---- */
   .skins{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:22px}
@@ -192,7 +192,7 @@
     </div>
     <div class="fan" aria-hidden="true">
       <div class="phone l"><img src="img/calendar.jpg" alt="" width="540" height="1111"></div>
-      <div class="phone c"><img src="img/main.jpg" alt="" width="540" height="1111"></div>
+      <div class="phone c"><img src="img/measure.jpg" alt="" width="540" height="1111"></div>
       <div class="phone r"><img src="img/combined.jpg" alt="" width="540" height="1111"></div>
     </div>
   </div>
@@ -201,14 +201,14 @@
 <section class="pills">
   <div class="wrap pill-grid">
     <div class="pill">
+      <div class="ic bg-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h3>遊タイムの期待値</h3>
+      <p>遊タイムまでの<wbr>残り回転数を<wbr>加味して、<wbr><span class="nw">期待値・ボーダーを</span><wbr>計算</p>
+    </div>
+    <div class="pill">
       <div class="ic bg-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
       <h3>現行機種の<wbr>スペックを収録</h3>
       <p>1R分母と<wbr>参考出玉を<wbr>自動で設定</p>
-    </div>
-    <div class="pill">
-      <div class="ic bg-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-      <h3>遊タイムの期待値</h3>
-      <p>遊タイムまでの<wbr>残り回転数を<wbr>加味して、<wbr>期待値・ボーダーを<wbr>計算</p>
     </div>
     <div class="pill">
       <div class="ic bg-p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg></div>
@@ -228,106 +228,85 @@
   <div class="sec-title"><span class="k">FEATURES</span><h2>できること</h2></div>
 
   <div class="feat">
-    <div class="shot"><div class="blob bg-m"></div><div class="phone"><img src="img/machines.jpg" alt="機種を選ぶ画面。検索欄と、お気に入り・遊タイムの絞り込みと、機種の一覧" width="540" height="1111" loading="lazy"></div></div>
+    <div class="shot"><div class="blob bg-y"></div><div class="phone"><img src="img/main.jpg" alt="計測の画面。回転率・時給・ボーダーと、遊タイムまでの残り回転数と期待値" width="540" height="1111" loading="lazy"></div></div>
     <div>
-      <span class="num bg-m"><i style="color:#0c9c78">1</i>機種データ</span>
-      <h3>現行機種の<wbr>スペックを収録</h3>
-      <ul>
-        <li>1R分母と参考出玉を自動で設定</li>
-        <li>機種名・型式名・通称で検索</li>
-        <li>お気に入り・遊タイムのある機種で絞り込み</li>
-        <li>載っていない機種も登録可能</li>
-      </ul>
-      <p class="note">機種のスペックは「<a href="https://pachinko-spec.info/">パチンコスペック解析</a>」様に許可を頂き、公開値を利用しています。</p>
-    </div>
-  </div>
-
-  <div class="feat rev">
-    <div class="shot"><div class="blob bg-b"></div><div class="phone"><img src="img/measure.jpg" alt="計測の画面。回転率・時給・ボーダー・仕事量と、回転数と玉数の入力欄" width="540" height="1111" loading="lazy"></div></div>
-    <div>
-      <span class="num bg-b"><i style="color:var(--brand)">2</i>計測</span>
+      <span class="num bg-b"><i style="color:var(--brand)">1</i>計測</span>
       <h3>回転率を常時把握</h3>
       <ul>
-        <li>打ちながら、回転率・ボーダー・仕事量・時給を計算</li>
-        <li>1R出玉と持ち玉比率を、記録から計算</li>
-        <li>記録はあとから1件ずつ修正</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="feat">
-    <div class="shot"><div class="blob bg-y"></div><div class="phone"><img src="img/main.jpg" alt="遊タイムの台を計測している画面。遊タイムまでの残り回転数と、期待値・ボーダー" width="540" height="1111" loading="lazy"></div></div>
-    <div>
-      <span class="num bg-y"><i style="color:#b07a00">3</i>遊タイム</span>
-      <h3>遊タイムの期待値</h3>
-      <ul>
-        <li>遊タイムまでの残り回転数を加味して、期待値・ボーダーを計算</li>
-        <li>大当たりのあとは、規定の回転数から自動で数え直し</li>
-        <li>遊タイムスルーにも対応</li>
+        <li>打ちながら、<wbr>回転率・ボーダー・<wbr>仕事量・時給を計算</li>
+        <li>遊タイムまでの<wbr>残り回転数を<wbr>加味して、<wbr><span class="nw">期待値・ボーダーを</span><wbr>計算</li>
       </ul>
     </div>
   </div>
 
   <div class="feat rev">
+    <div class="shot"><div class="blob bg-m"></div><div class="phone"><img src="img/machines.jpg" alt="機種を選ぶ画面" width="540" height="1111" loading="lazy"></div></div>
+    <div>
+      <span class="num bg-m"><i style="color:#0c9c78">2</i>機種データ</span>
+      <h3>現行機種の<wbr>スペックを収録</h3>
+      <ul>
+        <li>1R分母と<wbr>参考出玉を<wbr>自動で設定</li>
+        <li>お気に入り・<wbr>遊タイムのある機種で<wbr>絞り込み</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="feat">
     <div class="shot"><div class="blob bg-p"></div><div class="phone"><img src="img/bubble.jpg" alt="ほかのアプリの上に小さな入力窓（バブル）を出した画面" width="540" height="1066" loading="lazy"></div></div>
     <div>
-      <span class="num bg-p"><i style="color:var(--pink)">4</i>バブル</span>
+      <span class="num bg-p"><i style="color:var(--pink)">3</i>バブル</span>
       <h3>動画を見ながら<wbr>すぐ呼び出し<span class="tag">Android</span></h3>
       <ul>
-        <li>ほかのアプリの<wbr>画面の上に、<wbr>小さな<span class="nw">入力窓（バブル）を</span><wbr>出して記録</li>
-        <li>バブルの丸に、回転率と時給を常に表示</li>
-        <li>バブルで入れた記録も、そのまま計算に入ります</li>
+        <li>ほかのアプリの<wbr>上に出る<wbr>小さな<span class="nw">窓（バブル）で</span><wbr>記録</li>
+        <li>バブルの丸に、<wbr>回転率と時給を<wbr>常に表示</li>
       </ul>
-      <p class="note">iPhone にはほかのアプリの上に重ねて表示する仕組みがないため、バブルは Android だけの機能です。</p>
     </div>
   </div>
 
-  <div class="feat">
+  <div class="feat rev">
     <div class="shot"><div class="blob bg-s"></div><div class="phone"><img src="img/calendar.jpg" alt="トップのカレンダー。月の仕事量と、日ごとの仕事量" width="540" height="1111" loading="lazy"></div></div>
     <div>
-      <span class="num bg-s"><i style="color:#1e86e8">5</i>カレンダー</span>
+      <span class="num bg-s"><i style="color:#1e86e8">4</i>カレンダー</span>
       <h3>仕事量カレンダー</h3>
       <ul>
-        <li>日・月・年ごとの仕事量と、その推移</li>
-        <li>稼働日数・1日当たり・ベスト・ワーストで振り返り</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="feat rev">
-    <div class="shot"><div class="blob bg-m"></div><div class="phone"><img src="img/combined.jpg" alt="機種の合算の画面。月の仕事量と、その推移とまとめ" width="540" height="1111" loading="lazy"></div></div>
-    <div>
-      <span class="num bg-m"><i style="color:#0c9c78">6</i>合算</span>
-      <h3>店舗ごと・機種ごとに合算</h3>
-      <ul>
-        <li>店舗・機種ごとの仕事量と、その推移</li>
-        <li>店舗の交換率・貸玉も登録可能</li>
-        <li>同じ店・同じ台番の過去の記録とも合算</li>
+        <li>日・月・年ごとの<wbr>仕事量と、<wbr>その推移</li>
+        <li>稼働日数・<wbr>1日当たり・<wbr><span class="nw">ベスト・ワーストで</span><wbr>振り返り</li>
       </ul>
     </div>
   </div>
 
   <div class="feat">
-    <div class="shot"><div class="blob bg-p"></div><div class="phone"><img src="img/analysis.jpg" alt="分析の画面。回転率の推移のグラフとストローク別の回転率" width="540" height="1111" loading="lazy"></div></div>
+    <div class="shot"><div class="blob bg-m"></div><div class="phone"><img src="img/combined.jpg" alt="機種の合算の画面" width="540" height="1111" loading="lazy"></div></div>
     <div>
-      <span class="num bg-p"><i style="color:var(--pink)">7</i>分析</span>
-      <h3>回転率の推移をグラフで</h3>
+      <span class="num bg-m"><i style="color:#0c9c78">5</i>合算</span>
+      <h3>店舗ごと・<wbr>機種ごとに合算</h3>
       <ul>
-        <li>平均とボーダーの線つき</li>
-        <li>ストローク別の回転率</li>
-        <li>出玉と仕事量の推移</li>
+        <li>店舗・機種ごとの<wbr>仕事量と、<wbr>その推移</li>
+        <li>店舗の<wbr>交換率・貸玉も<wbr>登録可能</li>
       </ul>
     </div>
   </div>
 
   <div class="feat rev">
-    <div class="shot"><div class="blob bg-y"></div><div class="phone"><img src="img/detail.jpg" alt="詳細の画面。仕事量・回転単価などの算出値と記録の一覧" width="540" height="1111" loading="lazy"></div></div>
+    <div class="shot"><div class="blob bg-p"></div><div class="phone"><img src="img/analysis.jpg" alt="分析の画面。回転率の推移のグラフ" width="540" height="1111" loading="lazy"></div></div>
     <div>
-      <span class="num bg-y"><i style="color:#b07a00">8</i>詳細</span>
-      <h3>仕事量・回転単価を自動で計算</h3>
+      <span class="num bg-p"><i style="color:var(--pink)">6</i>分析</span>
+      <h3>回転率の推移を<wbr>グラフで</h3>
+      <ul>
+        <li>ストローク別の<wbr>回転率</li>
+        <li>出玉と<wbr>仕事量の推移</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="feat">
+    <div class="shot"><div class="blob bg-y"></div><div class="phone"><img src="img/detail.jpg" alt="詳細の画面。仕事量・回転単価などの算出値" width="540" height="1111" loading="lazy"></div></div>
+    <div>
+      <span class="num bg-y"><i style="color:#b07a00">7</i>詳細</span>
+      <h3>仕事量・<wbr>回転単価を<wbr>自動で計算</h3>
       <ul>
         <li>記録の CSV 書き出し</li>
-        <li>記録の控えの書き出し・読み込み</li>
+        <li>記録の控えの<wbr><span class="nw">書き出し・読み込み</span></li>
       </ul>
     </div>
   </div>
